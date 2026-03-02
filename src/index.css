@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-devops-dark: #0f172a;
+  --color-devops-darker: #020617;
+  --color-devops-accent: #10b981;
+  --color-devops-accent-hover: #059669;
+  --color-devops-text: #e2e8f0;
+  --color-devops-muted: #94a3b8;
+}
+
+body {
+  background-color: var(--color-devops-darker);
+  color: var(--color-devops-text);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background-color: var(--color-devops-accent);
+  color: var(--color-devops-darker);
+}
+
+/* Custom scrollbar for a tech feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-devops-darker);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-devops-dark);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-devops-accent);
+}
