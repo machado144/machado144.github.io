@@ -1,20 +1,47 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# machado144 Portfolio
 
-# Run and deploy your AI Studio app
+Personal portfolio built with React, Vite, and Tailwind CSS.
 
-This contains everything you need to run your app locally.
+## Getting Started
 
-View your app in AI Studio: https://ai.studio/apps/a0194d43-f0dd-45f7-aa2c-412e3e0b7074
+### Prerequisites
 
-## Run Locally
+- Node.js (v18 or higher)
+- npm
 
-**Prerequisites:**  Node.js
+### Local Development
 
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/machado144/machado144.github.io.git
+   cd machado144.github.io
+   ```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
+
+## Deployment
+
+This project is configured to deploy to GitHub Pages using GitHub Actions.
+
+### Manual Deployment
+
+1. Go to the **Actions** tab in the GitHub repository.
+2. Select the **Deploy to GitHub Pages** workflow.
+3. Click **Run workflow**.
+4. Select the branch you want to deploy from (default is `main`).
+5. Click **Run workflow** again.
+
+The site will be available at [https://machado144.github.io/](https://machado144.github.io/).
