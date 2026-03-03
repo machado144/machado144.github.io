@@ -17,7 +17,7 @@ import CommandPalette from './components/CommandPalette';
 export default function App() {
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-devops-darker text-devops-text font-sans selection:bg-devops-accent selection:text-devops-darker">
+      <div className="min-h-screen bg-cloud-darker text-cloud-text font-sans selection:bg-k8s-blue selection:text-white">
         <Navbar />
         <CommandPalette />
         <main>
@@ -28,9 +28,18 @@ export default function App() {
           <Skills />
         </main>
         <ChatBot />
-        
-        <footer className="py-8 text-center text-sm font-mono text-devops-muted border-t border-white/5">
-          <p>© {new Date().getFullYear()} Lucas Machado. All rights reserved.</p>
+
+        <footer className="py-12 bg-cloud-dark border-t border-cloud-border">
+          <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-2 text-k8s-blue font-mono font-bold">
+              <span>lucas<span className="text-white">.</span>sh</span>
+              <div className="status-badge status-online">PROD-ENV</div>
+            </div>
+
+            <p className="text-[10px] font-mono text-cloud-muted uppercase tracking-[0.2em]">
+              © {new Date().getFullYear()} Infrastructure Portfolio. Built for high-availability.
+            </p>
+          </div>
         </footer>
       </div>
     </LanguageProvider>
