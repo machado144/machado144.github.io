@@ -17,6 +17,9 @@
   --color-status-error: #f85149;
 
   --color-accent: var(--color-k8s-blue);
+
+  --shadow-dashboard: 0 0 15px rgba(50, 108, 229, 0.1);
+  --shadow-infra: 0 10px 20px rgba(50, 108, 229, 0.05);
 }
 
 body {
@@ -55,7 +58,7 @@ body {
 }
 
 .dashboard-card:hover {
-  @apply border-k8s-blue/50 shadow-[0_0_15px_rgba(50, 108, 229, 0.1)];
+  @apply border-k8s-blue/50 shadow-dashboard;
 }
 
 .status-badge {
@@ -81,11 +84,11 @@ body {
 }
 
 .infra-block:hover {
-  @apply border-k8s-blue/50 -translate-y-1 shadow-[0_10px_20px_rgba(50, 108, 229, 0.05)];
+  @apply border-k8s-blue/50 -translate-y-1 shadow-infra;
 }
 
 .connection-line {
-  @apply stroke-cloud-border fill-none stroke-[1.5] stroke-dash-2;
+  @apply stroke-cloud-border fill-none stroke-[1.5];
   stroke-dasharray: 4 4;
 }
 
