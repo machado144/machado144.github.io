@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import { resumeData } from '../data/resume';
-import { Terminal, Activity, Cpu, Server, Network, Database, Zap, Clock, ShieldCheck, Bug } from 'lucide-react';
+import { Terminal, Activity, Cpu, Server, Network, Database, Zap, Clock, ShieldCheck, Bug, Cloud, Box } from 'lucide-react';
 import { ReactFlow, Handle, Position, Background, Edge, Node, getBezierPath, BaseEdge } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 
@@ -10,7 +10,7 @@ import '@xyflow/react/dist/style.css';
 const InfraNode = ({ data }: any) => {
   const Icon = data.icon;
   return (
-    <motion.div 
+    <motion.div
       initial={{ y: 0 }}
       animate={{ y: [0, -5, 0] }}
       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: data.delay || 0 }}
@@ -25,11 +25,11 @@ const InfraNode = ({ data }: any) => {
       {data.status && <div className={`text-[8px] font-mono font-bold mt-1 ${data.statusColor || 'text-cloud-muted'}`}>{data.status}</div>}
       {data.showProgress && (
         <div className="mt-3 h-1 w-full bg-cloud-darker rounded-full overflow-hidden border border-cloud-border/30">
-          <motion.div 
+          <motion.div
             initial={{ width: 0 }}
             animate={{ width: data.progress || '50%' }}
             transition={{ duration: 2, delay: 0.5 }}
-            className={`h-full ${data.progressColor || 'bg-k8s-blue'}`} 
+            className={`h-full ${data.progressColor || 'bg-k8s-blue'}`}
           />
         </div>
       )}
@@ -59,7 +59,7 @@ const DataEdge = (props: any) => {
         stroke={style.stroke || 'var(--color-k8s-blue)'}
         strokeWidth={2}
         className="connection-line connection-active"
-        style={{ 
+        style={{
           filter: `drop-shadow(0 0 3px ${style.stroke || 'var(--color-k8s-blue)'})`,
           opacity: 0.6
         }}
@@ -76,75 +76,104 @@ const edgeTypes = {
   data: DataEdge,
 };
 
-// Perfectly balanced Diamond Layout
+// Vertical Networking Flow Layout
 const initialNodes: Node[] = [
   {
-    id: 'gateway',
+    id: 'gke-lb',
     type: 'infra',
-    position: { x: 150, y: 0 },
-    data: { 
-      label: 'Gateway-X', 
-      icon: Zap, 
-      iconColor: 'text-status-warning', 
-      status: 'EXTERNAL_INGRESS', 
-      statusColor: 'text-status-warning',
+    position: { x: 250, y: 0 },
+    data: {
+      label: 'GKE L7 LB',
+      icon: Cloud,
+      iconColor: 'text-k8s-blue',
+      status: 'EXTERNAL_INGRESS',
+      statusColor: 'text-k8s-blue',
       showProgress: true,
-      progress: '66%',
-      progressColor: 'bg-status-warning',
+      progress: '100%',
+      progressColor: 'bg-k8s-blue',
       delay: 0
     },
   },
   {
-    id: 'worker',
+    id: 'gateway-api',
     type: 'infra',
-    position: { x: 0, y: 170 },
-    data: { 
-      label: 'Worker-A', 
-      icon: Server, 
-      iconColor: 'text-status-success', 
-      status: 'READY (PODS: 12)', 
+    position: { x: 250, y: 140 },
+    data: {
+      label: 'Gateway API',
+      icon: Network,
+      iconColor: 'text-status-warning',
+      status: 'ROUTING_RULES',
+      statusColor: 'text-status-warning',
+      showProgress: true,
+      progress: '80%',
+      progressColor: 'bg-status-warning',
+      delay: 0.5
+    },
+  },
+  {
+    id: 'kong',
+    type: 'infra',
+    position: { x: 250, y: 280 },
+    data: {
+      label: 'Kong API Gateway',
+      icon: ShieldCheck,
+      iconColor: 'text-status-success',
+      status: 'AUTH_&_RATE_LIMIT',
       statusColor: 'text-status-success',
       showProgress: true,
-      progress: '50%',
+      progress: '60%',
       progressColor: 'bg-status-success',
       className: 'shadow-[0_0_30px_rgba(46,160,67,0.1)] border-status-success/30',
       delay: 1
     },
   },
   {
-    id: 'control-plane',
+    id: 'app-a',
     type: 'infra',
-    position: { x: 300, y: 170 },
-    data: { 
-      label: 'Control-Plane', 
-      icon: ShieldCheck, 
-      status: 'API_SERVER', 
+    position: { x: 50, y: 440 },
+    data: {
+      label: 'Service-A',
+      icon: Box,
+      status: 'mTLS : ISTIO-PROXY',
       statusColor: 'text-k8s-blue',
-      showProgress: true,
-      progress: '75%',
-      delay: 2
+      className: 'border-dashed',
+      delay: 1.5
     },
   },
   {
-    id: 'persistence',
+    id: 'app-b',
     type: 'infra',
-    position: { x: 150, y: 340 },
-    data: { 
-      label: 'Persistence', 
-      icon: Database, 
-      status: 'ETCD_SNAPSHOT_OK',
+    position: { x: 250, y: 440 },
+    data: {
+      label: 'Service-B',
+      icon: Box,
+      status: 'mTLS : ISTIO-PROXY',
+      statusColor: 'text-k8s-blue',
       className: 'border-dashed',
-      delay: 0.5
+      delay: 1.7
+    },
+  },
+  {
+    id: 'app-c',
+    type: 'infra',
+    position: { x: 450, y: 440 },
+    data: {
+      label: 'Service-C',
+      icon: Box,
+      status: 'NO_SIDECAR',
+      statusColor: 'text-cloud-muted',
+      className: 'border-dashed',
+      delay: 1.9
     },
   },
 ];
 
 const initialEdges: Edge[] = [
-  { id: 'gw-wa', source: 'gateway', target: 'worker', type: 'data', style: { stroke: 'var(--color-status-success)' } },
-  { id: 'cp-gw', source: 'control-plane', target: 'gateway', type: 'data', style: { stroke: 'var(--color-k8s-blue)' } },
-  { id: 'cp-wa', source: 'control-plane', target: 'worker', type: 'data', style: { stroke: 'var(--color-k8s-blue)' } },
-  { id: 'wa-ps', source: 'worker', target: 'persistence', type: 'data', style: { stroke: 'var(--color-status-warning)' } },
-  { id: 'cp-ps', source: 'control-plane', target: 'persistence', type: 'data', style: { stroke: 'var(--color-cloud-border)' } },
+  { id: 'lb-gw', source: 'gke-lb', target: 'gateway-api', type: 'data', style: { stroke: 'var(--color-k8s-blue)' } },
+  { id: 'gw-kong', source: 'gateway-api', target: 'kong', type: 'data', style: { stroke: 'var(--color-status-warning)' } },
+  { id: 'kong-a', source: 'kong', target: 'app-a', type: 'data', style: { stroke: 'var(--color-status-success)' } },
+  { id: 'kong-b', source: 'kong', target: 'app-b', type: 'data', style: { stroke: 'var(--color-status-success)' } },
+  { id: 'kong-c', source: 'kong', target: 'app-c', type: 'data', style: { stroke: 'var(--color-cloud-border)' } },
 ];
 
 export default function Hero() {
