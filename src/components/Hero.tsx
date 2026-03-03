@@ -3,6 +3,149 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import { resumeData } from '../data/resume';
 import { Terminal, Activity, Cpu, Server, Network, Database, Zap, Clock, ShieldCheck, Bug } from 'lucide-react';
+import { ReactFlow, Handle, Position, Background, Edge, Node, getBezierPath, BaseEdge } from '@xyflow/react';
+import '@xyflow/react/dist/style.css';
+
+// Custom Node Component for Infrastructure Blocks with floating animation
+const InfraNode = ({ data }: any) => {
+  const Icon = data.icon;
+  return (
+    <motion.div 
+      initial={{ y: 0 }}
+      animate={{ y: [0, -5, 0] }}
+      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: data.delay || 0 }}
+      className={`infra-block text-center !p-4 bg-cloud-dark/95 min-w-[160px] pointer-events-auto backdrop-blur-sm ${data.className || ''}`}
+    >
+      <Handle type="target" position={Position.Top} className="!bg-k8s-blue !w-1 !h-1 !border-none !-top-1 opacity-0" />
+      <div className="relative">
+        <div className={`absolute inset-0 blur-lg opacity-20 ${data.iconColor || 'bg-k8s-blue'}`} />
+        <Icon size={data.iconSize || 20} className={`${data.iconColor || 'text-k8s-blue'} mx-auto mb-2 relative z-10`} />
+      </div>
+      <div className="text-[10px] font-mono font-bold uppercase tracking-wider">{data.label}</div>
+      {data.status && <div className={`text-[8px] font-mono font-bold mt-1 ${data.statusColor || 'text-cloud-muted'}`}>{data.status}</div>}
+      {data.showProgress && (
+        <div className="mt-3 h-1 w-full bg-cloud-darker rounded-full overflow-hidden border border-cloud-border/30">
+          <motion.div 
+            initial={{ width: 0 }}
+            animate={{ width: data.progress || '50%' }}
+            transition={{ duration: 2, delay: 0.5 }}
+            className={`h-full ${data.progressColor || 'bg-k8s-blue'}`} 
+          />
+        </div>
+      )}
+      <Handle type="source" position={Position.Bottom} className="!bg-k8s-blue !w-1 !h-1 !border-none !-bottom-1 opacity-0" />
+    </motion.div>
+  );
+};
+
+// Custom Edge to create "Glowing Flow" effect
+const DataEdge = (props: any) => {
+  const { sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition, style = {}, markerEnd } = props;
+  const [edgePath] = getBezierPath({
+    sourceX,
+    sourceY,
+    sourcePosition,
+    targetX,
+    targetY,
+    targetPosition,
+  });
+
+  return (
+    <>
+      <BaseEdge path={edgePath} markerEnd={markerEnd} style={{ ...style, stroke: '#30363d', strokeWidth: 1 }} />
+      <path
+        d={edgePath}
+        fill="none"
+        stroke={style.stroke || 'var(--color-k8s-blue)'}
+        strokeWidth={2}
+        className="connection-line connection-active"
+        style={{ 
+          filter: `drop-shadow(0 0 3px ${style.stroke || 'var(--color-k8s-blue)'})`,
+          opacity: 0.6
+        }}
+      />
+    </>
+  );
+};
+
+const nodeTypes = {
+  infra: InfraNode,
+};
+
+const edgeTypes = {
+  data: DataEdge,
+};
+
+// Perfectly balanced Diamond Layout
+const initialNodes: Node[] = [
+  {
+    id: 'gateway',
+    type: 'infra',
+    position: { x: 150, y: 0 },
+    data: { 
+      label: 'Gateway-X', 
+      icon: Zap, 
+      iconColor: 'text-status-warning', 
+      status: 'EXTERNAL_INGRESS', 
+      statusColor: 'text-status-warning',
+      showProgress: true,
+      progress: '66%',
+      progressColor: 'bg-status-warning',
+      delay: 0
+    },
+  },
+  {
+    id: 'worker',
+    type: 'infra',
+    position: { x: 0, y: 170 },
+    data: { 
+      label: 'Worker-A', 
+      icon: Server, 
+      iconColor: 'text-status-success', 
+      status: 'READY (PODS: 12)', 
+      statusColor: 'text-status-success',
+      showProgress: true,
+      progress: '50%',
+      progressColor: 'bg-status-success',
+      className: 'shadow-[0_0_30px_rgba(46,160,67,0.1)] border-status-success/30',
+      delay: 1
+    },
+  },
+  {
+    id: 'control-plane',
+    type: 'infra',
+    position: { x: 300, y: 170 },
+    data: { 
+      label: 'Control-Plane', 
+      icon: ShieldCheck, 
+      status: 'API_SERVER', 
+      statusColor: 'text-k8s-blue',
+      showProgress: true,
+      progress: '75%',
+      delay: 2
+    },
+  },
+  {
+    id: 'persistence',
+    type: 'infra',
+    position: { x: 150, y: 340 },
+    data: { 
+      label: 'Persistence', 
+      icon: Database, 
+      status: 'ETCD_SNAPSHOT_OK',
+      className: 'border-dashed',
+      delay: 0.5
+    },
+  },
+];
+
+const initialEdges: Edge[] = [
+  { id: 'gw-wa', source: 'gateway', target: 'worker', type: 'data', style: { stroke: 'var(--color-status-success)' } },
+  { id: 'cp-gw', source: 'control-plane', target: 'gateway', type: 'data', style: { stroke: 'var(--color-k8s-blue)' } },
+  { id: 'cp-wa', source: 'control-plane', target: 'worker', type: 'data', style: { stroke: 'var(--color-k8s-blue)' } },
+  { id: 'wa-ps', source: 'worker', target: 'persistence', type: 'data', style: { stroke: 'var(--color-status-warning)' } },
+  { id: 'cp-ps', source: 'control-plane', target: 'persistence', type: 'data', style: { stroke: 'var(--color-cloud-border)' } },
+];
 
 export default function Hero() {
   const { language, t } = useLanguage();
@@ -73,7 +216,7 @@ export default function Hero() {
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-status-success/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
-        {/* Left Side: Identity & Health */}
+        {/* Identity & Health */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
@@ -109,7 +252,6 @@ export default function Hero() {
             {data.profile}
           </p>
 
-          {/* Cluster Health Dashboard */}
           <div className="grid grid-cols-3 gap-4 p-5 bg-cloud-dark/50 border border-cloud-border rounded-xl backdrop-blur-md mb-8">
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-[9px] font-mono text-cloud-muted uppercase">
@@ -148,57 +290,29 @@ export default function Hero() {
         </motion.div>
 
         {/* Right Side: Resource Topology */}
-        <div className="relative h-[400px] hidden lg:block">
-          {/* Topology Connections */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40" viewBox="0 0 400 400">
-            {/* Connection Paths */}
-            <path id="path-ctrl-wkr-a" d="M 200 120 L 72 180" stroke="currentColor" fill="none" className="connection-line connection-active text-cloud-border" strokeWidth="1.5" />
-            <path id="path-ctrl-wkr-b" d="M 200 120 L 328 180" stroke="currentColor" fill="none" className="connection-line connection-active text-cloud-border" strokeWidth="1.5" />
-            <path id="path-wkr-a-data" d="M 72 250 L 200 300" stroke="currentColor" fill="none" className="connection-line text-cloud-border" strokeWidth="1.5" />
-            <path id="path-wkr-b-data" d="M 328 250 L 200 300" stroke="currentColor" fill="none" className="connection-line text-cloud-border" strokeWidth="1.5" />
-
-            {/* Traffic Packets - Animated along paths */}
-            <motion.circle r="2.5" fill="var(--color-k8s-blue)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} style={{ motionPath: 'path("M 200 120 L 72 180")' }} />
-            <motion.circle r="2.5" fill="var(--color-status-success)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: 1 }} style={{ motionPath: 'path("M 200 120 L 328 180")' }} />
-            <motion.circle r="2.5" fill="var(--color-k8s-blue)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: 2 }} style={{ motionPath: 'path("M 72 250 L 200 300")' }} />
-          </svg>
-
-          {/* Infrastructure Blocks */}
-          <motion.div initial={{ y: 0 }} animate={{ y: [0, -4, 0] }} transition={{ duration: 4, repeat: Infinity }} className="infra-block absolute top-[40px] left-1/2 -translate-x-1/2 w-44 text-center !p-4 bg-cloud-dark/80">
-            <ShieldCheck size={20} className="text-k8s-blue mx-auto mb-2" />
-            <div className="text-[10px] font-mono font-bold uppercase">Control-Plane</div>
-            <div className="mt-2 h-1 w-full bg-cloud-darker rounded-full overflow-hidden">
-              <div className="h-full bg-k8s-blue w-3/4" />
-            </div>
-          </motion.div>
-
-          <div className="infra-block absolute top-[180px] left-[0px] w-36 text-center !p-4 bg-cloud-dark/80">
-            <Server size={18} className="text-status-success mx-auto mb-2" />
-            <div className="text-[10px] font-mono font-bold uppercase">Worker-A</div>
-            <div className="text-[8px] text-status-success font-mono font-bold">READY</div>
-            <div className="mt-2 h-1 w-full bg-cloud-darker rounded-full overflow-hidden">
-              <div className="h-full bg-status-success w-1/2" />
-            </div>
-          </div>
-
-          <div className="infra-block absolute top-[180px] right-[0px] w-36 text-center !p-4 bg-cloud-dark/80">
-            <Zap size={18} className="text-status-warning mx-auto mb-2" />
-            <div className="text-[10px] font-mono font-bold uppercase">Gateway-X</div>
-            <div className="text-[8px] text-status-warning font-mono font-bold">ACTIVE</div>
-            <div className="mt-2 h-1 w-full bg-cloud-darker rounded-full overflow-hidden">
-              <div className="h-full bg-status-warning w-2/3" />
-            </div>
-          </div>
-
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="infra-block absolute top-[280px] left-1/2 -translate-x-1/2 w-44 text-center !p-4 bg-cloud-dark/80 border-dashed">
-            <Database size={20} className="text-k8s-blue mx-auto mb-2" />
-            <div className="text-[10px] font-mono font-bold uppercase">Persistence</div>
-            <div className="text-[8px] text-cloud-muted font-mono">ETCD_SNAPSHOT_OK</div>
-          </motion.div>
+        <div key="topology-container" className="relative h-[550px] hidden lg:block pointer-events-none">
+          <ReactFlow
+            nodes={initialNodes}
+            edges={initialEdges}
+            nodeTypes={nodeTypes}
+            edgeTypes={edgeTypes}
+            fitView
+            fitViewOptions={{ padding: 0.1 }}
+            panOnDrag={false}
+            zoomOnScroll={false}
+            zoomOnPinch={false}
+            nodesDraggable={false}
+            nodesConnectable={false}
+            elementsSelectable={false}
+            preventScrolling={false}
+            proOptions={{ hideAttribution: true }}
+            className="!bg-transparent"
+          >
+            <Background color="var(--color-cloud-border)" gap={24} size={1} />
+          </ReactFlow>
         </div>
       </div>
 
-      {/* System Events Ticker */}
       <div className="max-w-7xl mx-auto mt-20 border-t border-cloud-border pt-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-center gap-6 overflow-hidden">
           <div className="flex items-center gap-2 text-[10px] font-mono text-k8s-blue shrink-0 font-bold">
