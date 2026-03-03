@@ -150,17 +150,17 @@ export default function Hero() {
         {/* Right Side: Resource Topology */}
         <div className="relative h-[400px] hidden lg:block">
           {/* Topology Connections */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-60" viewBox="0 0 400 400">
+          <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40" viewBox="0 0 400 400">
             {/* Connection Paths */}
-            <path id="path-ctrl-wkr-a" d="M 200 80 L 72 220" stroke="currentColor" fill="none" className="connection-line connection-active text-cloud-border" strokeWidth="1.5" />
-            <path id="path-ctrl-wkr-b" d="M 200 80 L 328 220" stroke="currentColor" fill="none" className="connection-line connection-active text-cloud-border" strokeWidth="1.5" />
-            <path id="path-wkr-a-data" d="M 72 220 L 200 310" stroke="currentColor" fill="none" className="connection-line text-cloud-border" strokeWidth="1.5" />
-            <path id="path-wkr-b-data" d="M 328 220 L 200 310" stroke="currentColor" fill="none" className="connection-line text-cloud-border" strokeWidth="1.5" />
+            <path id="path-ctrl-wkr-a" d="M 200 120 L 72 180" stroke="currentColor" fill="none" className="connection-line connection-active text-cloud-border" strokeWidth="1.5" />
+            <path id="path-ctrl-wkr-b" d="M 200 120 L 328 180" stroke="currentColor" fill="none" className="connection-line connection-active text-cloud-border" strokeWidth="1.5" />
+            <path id="path-wkr-a-data" d="M 72 250 L 200 300" stroke="currentColor" fill="none" className="connection-line text-cloud-border" strokeWidth="1.5" />
+            <path id="path-wkr-b-data" d="M 328 250 L 200 300" stroke="currentColor" fill="none" className="connection-line text-cloud-border" strokeWidth="1.5" />
 
             {/* Traffic Packets - Animated along paths */}
-            <motion.circle r="2.5" fill="var(--color-k8s-blue)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} style={{ motionPath: 'path("M 200 80 L 72 220")' }} />
-            <motion.circle r="2.5" fill="var(--color-status-success)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: 1 }} style={{ motionPath: 'path("M 200 80 L 328 220")' }} />
-            <motion.circle r="2.5" fill="var(--color-k8s-blue)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: 2 }} style={{ motionPath: 'path("M 328 220 L 200 310")' }} />
+            <motion.circle r="2.5" fill="var(--color-k8s-blue)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} style={{ motionPath: 'path("M 200 120 L 72 180")' }} />
+            <motion.circle r="2.5" fill="var(--color-status-success)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: 1 }} style={{ motionPath: 'path("M 200 120 L 328 180")' }} />
+            <motion.circle r="2.5" fill="var(--color-k8s-blue)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: 2 }} style={{ motionPath: 'path("M 72 250 L 200 300")' }} />
           </svg>
 
           {/* Infrastructure Blocks */}
