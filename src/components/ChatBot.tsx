@@ -31,10 +31,10 @@ export default function ChatBot() {
 
     // Mock response for regular chat
     setTimeout(() => {
-      let botResponse = language === 'en' 
+      let botResponse = language === 'en'
         ? "I'm currently a mocked assistant. Soon I'll be connected to a Cloudflare Worker to answer questions about Lucas's resume in real-time!"
         : "Atualmente sou um assistente simulado. Em breve estarei conectado a um Cloudflare Worker para responder perguntas sobre o currículo do Lucas em tempo real!";
-      
+
       if (text.toLowerCase().includes('kubernetes') || text.toLowerCase().includes('k8s')) {
         botResponse = language === 'en'
           ? "Lucas has extensive experience with Kubernetes, managing GKE and EKS clusters, implementing GitOps with ArgoCD, and writing custom Helm charts."
@@ -68,7 +68,7 @@ export default function ChatBot() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 p-4 bg-devops-accent text-devops-darker rounded-full shadow-lg z-50 ${isOpen ? 'hidden' : 'flex'}`}
+        className={`fixed bottom-6 right-6 p-4 bg-k8s-blue text-white rounded-full shadow-lg z-50 ${isOpen ? 'hidden' : 'flex'} border-4 border-cloud-dark hover:border-k8s-blue/50 transition-all`}
       >
         <MessageSquare size={24} />
       </motion.button>
@@ -79,17 +79,18 @@ export default function ChatBot() {
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
-            className="fixed bottom-6 right-6 w-[350px] sm:w-[400px] h-[500px] bg-devops-darker border border-white/10 rounded-2xl shadow-2xl flex flex-col z-50 overflow-hidden"
+            className="fixed bottom-6 right-6 w-[350px] sm:w-[400px] h-[500px] bg-cloud-darker border border-cloud-border rounded-2xl shadow-2xl flex flex-col z-50 overflow-hidden"
           >
             {/* Header */}
-            <div className="p-4 bg-devops-dark border-b border-white/10 flex justify-between items-center">
-              <div className="flex items-center gap-2 text-devops-accent font-mono font-bold">
+            <div className="p-4 bg-cloud-dark border-b border-cloud-border flex justify-between items-center">
+              <div className="flex items-center gap-2 text-k8s-blue font-mono font-bold">
                 <Terminal size={20} />
                 <span>{t('chat.title')}</span>
+                <div className="status-badge status-online h-4 text-[9px]">LIVE</div>
               </div>
-              <button 
+              <button
                 onClick={() => setIsOpen(false)}
-                className="text-devops-muted hover:text-white transition-colors"
+                className="text-cloud-muted hover:text-white transition-colors"
               >
                 <X size={20} />
               </button>
@@ -98,19 +99,18 @@ export default function ChatBot() {
             {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
               {messages.map((msg) => (
-                <div 
-                  key={msg.id} 
+                <div
+                  key={msg.id}
                   className={`flex gap-3 ${msg.type === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
                 >
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${msg.type === 'user' ? 'bg-devops-dark' : 'bg-devops-accent/20 text-devops-accent'}`}>
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border border-cloud-border ${msg.type === 'user' ? 'bg-cloud-dark' : 'bg-k8s-blue/20 text-k8s-blue'}`}>
                     {msg.type === 'user' ? <User size={16} /> : <Bot size={16} />}
                   </div>
-                  <div 
-                    className={`max-w-[75%] p-3 rounded-2xl text-sm ${
-                      msg.type === 'user' 
-                        ? 'bg-devops-dark text-white rounded-tr-none' 
-                        : 'bg-devops-accent/10 text-devops-text border border-devops-accent/20 rounded-tl-none'
-                    }`}
+                  <div
+                    className={`max-w-[75%] p-3 rounded-xl text-sm ${msg.type === 'user'
+                        ? 'bg-cloud-dark text-white border border-cloud-border rounded-tr-none'
+                        : 'bg-k8s-blue/5 text-cloud-text border border-k8s-blue/20 rounded-tl-none'
+                      }`}
                   >
                     {msg.text}
                   </div>
@@ -127,7 +127,7 @@ export default function ChatBot() {
                     <button
                       key={i}
                       onClick={() => handleSend(s)}
-                      className="text-xs px-3 py-1.5 bg-devops-dark border border-white/5 rounded-full text-devops-muted hover:text-devops-accent hover:border-devops-accent/50 transition-colors text-left"
+                      className="text-[10px] font-mono font-bold px-3 py-1.5 bg-cloud-dark border border-cloud-border rounded-lg text-cloud-muted hover:text-k8s-blue hover:border-k8s-blue/50 transition-all text-left uppercase tracking-tighter"
                     >
                       {s}
                     </button>
@@ -137,8 +137,8 @@ export default function ChatBot() {
             </div>
 
             {/* Input */}
-            <div className="p-4 bg-devops-dark border-t border-white/10">
-              <form 
+            <div className="p-4 bg-cloud-dark border-t border-cloud-border">
+              <form
                 onSubmit={(e) => { e.preventDefault(); handleSend(); }}
                 className="flex gap-2"
               >
@@ -147,12 +147,12 @@ export default function ChatBot() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder={t('chat.placeholder')}
-                  className="flex-1 bg-devops-darker border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-devops-accent transition-colors"
+                  className="flex-1 bg-cloud-darker border border-cloud-border rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-k8s-blue transition-colors font-mono"
                 />
-                <button 
+                <button
                   type="submit"
                   disabled={!input.trim()}
-                  className="p-2 bg-devops-accent text-devops-darker rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-devops-accent-hover transition-colors"
+                  className="p-2 bg-k8s-blue text-white rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-k8s-blue/80 transition-colors"
                 >
                   <Send size={20} />
                 </button>

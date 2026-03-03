@@ -1,116 +1,148 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import { resumeData } from '../data/resume';
-import { Briefcase, Calendar, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
+import { Calendar, MapPin, Search, Database, Terminal, Layers, Box, Activity, ChevronRight } from 'lucide-react';
 
 export default function Experience() {
   const { language, t } = useLanguage();
   const data = resumeData[language];
-  const [showAllExp, setShowAllExp] = useState(false);
-  const [expandedRoles, setExpandedRoles] = useState<Record<number, boolean>>({});
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const toggleRole = (index: number) => {
-    setExpandedRoles(prev => ({ ...prev, [index]: !prev[index] }));
-  };
-
-  const displayedExperiences = showAllExp ? data.experience : data.experience.slice(0, 3);
+  const activeExp = data.experience[activeIndex];
 
   return (
-    <section id="experience" className="py-24 px-6 bg-devops-dark">
-      <div className="max-w-4xl mx-auto">
-        <motion.h2
+    <section id="experience" className="py-24 px-6 bg-cloud-darker relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cloud-border to-transparent" />
+
+      <div className="max-w-6xl mx-auto relative">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold mb-16 flex items-center gap-4"
+          className="mb-12"
         >
-          <span className="text-devops-accent font-mono text-2xl">01.</span>
-          {t('experience.title')}
-          <div className="h-px bg-white/10 flex-grow ml-4"></div>
-        </motion.h2>
+          <div className="flex items-center gap-3 text-k8s-blue font-mono text-sm mb-2 uppercase tracking-widest">
+            <Layers size={16} />
+            <span>Resource_Explorer</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-tight">
+            {t('experience.title')}
+          </h2>
+        </motion.div>
 
-        <div className="space-y-16">
-          {displayedExperiences.map((exp, index) => {
-            const isExpanded = expandedRoles[index];
-            const displayedHighlights = isExpanded ? exp.highlights : exp.highlights.slice(0, 4);
-            const hasMoreHighlights = exp.highlights.length > 4;
-
-            return (
-            <motion.div
-              key={`${exp.company}-${index}`}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative pl-8 md:pl-0"
-            >
-              {/* Timeline Line */}
-              <div className="hidden md:block absolute left-[31px] top-8 bottom-[-64px] w-px bg-white/10 z-0 last:hidden"></div>
-              
-              <div className="md:grid md:grid-cols-12 gap-8 items-start relative z-10">
-                {/* Timeline Dot */}
-                <div className="hidden md:flex col-span-1 justify-center mt-1.5">
-                  <div className="w-3 h-3 rounded-full bg-devops-accent shadow-[0_0_10px_var(--color-devops-accent)]"></div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[500px]">
+          {/* Sidebar / Namespaces */}
+          <div className="lg:col-span-4 space-y-2">
+            <div className="px-4 py-2 text-[10px] font-mono text-cloud-muted uppercase tracking-widest border-b border-cloud-border mb-4 flex items-center justify-between">
+              <span>Namespaces</span>
+              <span className="text-k8s-blue">{data.experience.length} ACTIVE</span>
+            </div>
+            {data.experience.map((exp, index) => (
+              <button
+                key={`${exp.company}-${index}`}
+                onClick={() => setActiveIndex(index)}
+                className={`w-full text-left px-4 py-3 rounded-lg border transition-all group flex items-center justify-between ${activeIndex === index
+                    ? 'bg-cloud-dark border-k8s-blue/50 text-white'
+                    : 'bg-transparent border-transparent text-cloud-muted hover:bg-cloud-dark/50'
+                  }`}
+              >
+                <div className="flex items-center gap-3">
+                  <div className={`p-1.5 rounded bg-cloud-darker border ${activeIndex === index ? 'border-k8s-blue text-k8s-blue' : 'border-cloud-border text-cloud-muted'
+                    }`}>
+                    <Box size={14} />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-sm font-bold truncate max-w-[150px]">{exp.company}</span>
+                    <span className="text-[10px] font-mono opacity-60">PROD-CLUSTER</span>
+                  </div>
                 </div>
+                <ChevronRight size={14} className={`transition-transform ${activeIndex === index ? 'translate-x-0 opacity-100' : '-translate-x-2 opacity-0'}`} />
+              </button>
+            ))}
+          </div>
 
-                <div className="md:col-span-11 bg-devops-darker rounded-xl p-6 md:p-8 border border-white/5 hover:border-devops-accent/30 transition-colors shadow-lg">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-devops-text">
-                        {exp.role} <span className="text-devops-accent">@ {exp.company}</span>
+          {/* Main Content / Resource Definition */}
+          <div className="lg:col-span-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+                className="infra-block h-full flex flex-col"
+              >
+                {/* Header */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-cloud-border pb-6">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="text-2xl font-bold text-white uppercase tracking-tight">
+                        {activeExp.role}
                       </h3>
+                      <div className="status-badge status-online">STABLE</div>
                     </div>
-                    <div className="flex flex-col gap-2 text-sm font-mono text-devops-muted">
-                      <div className="flex items-center gap-2">
-                        <Calendar size={14} className="text-devops-accent" />
-                        {exp.period}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin size={14} className="text-devops-accent" />
-                        {exp.location}
-                      </div>
+                    <div className="text-k8s-blue font-mono text-xs font-bold">
+                      kind: EmploymentHistory | namespace: {activeExp.company.toLowerCase().replace(/\s+/g, '-')}
                     </div>
                   </div>
 
-                  <ul className="space-y-3 mt-6">
-                    {displayedHighlights.map((highlight, i) => (
-                      <li key={i} className="flex items-start gap-3 text-devops-muted leading-relaxed text-sm md:text-base">
-                        <span className="text-devops-accent mt-1.5 text-xs">▹</span>
-                        <span>{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  {hasMoreHighlights && (
-                    <button 
-                      onClick={() => toggleRole(index)} 
-                      className="flex items-center gap-1 text-devops-accent text-sm mt-4 hover:text-devops-accent-hover transition-colors font-mono"
-                    >
-                      {isExpanded ? (
-                        <><ChevronUp size={16} /> {t('experience.role.showLess')}</>
-                      ) : (
-                        <><ChevronDown size={16} /> {t('experience.role.showMore')}</>
-                      )}
-                    </button>
-                  )}
+                  <div className="flex flex-col gap-1.5 text-[11px] font-mono text-cloud-muted uppercase">
+                    <div className="flex items-center gap-2">
+                      <Calendar size={14} className="text-k8s-blue" />
+                      {activeExp.period}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin size={14} className="text-k8s-blue" />
+                      {activeExp.location}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          )})}
-        </div>
 
-        {data.experience.length > 3 && (
-          <div className="mt-16 text-center relative z-10">
-            <button
-              onClick={() => setShowAllExp(!showAllExp)}
-              className="px-6 py-3 border border-devops-accent text-devops-accent rounded hover:bg-devops-accent/10 transition-colors font-mono text-sm flex items-center gap-2 mx-auto"
-            >
-              {showAllExp ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-              {showAllExp ? t('experience.showLess') : t('experience.showMore')}
-            </button>
+                {/* Resource Specification */}
+                <div className="space-y-6">
+                  <div>
+                    <div className="text-[10px] font-mono text-cloud-muted uppercase tracking-widest mb-4 flex items-center gap-2">
+                      <Terminal size={12} className="text-k8s-blue" />
+                      spec.accomplishments
+                    </div>
+                    <ul className="grid grid-cols-1 gap-4">
+                      {activeExp.highlights.map((highlight, i) => (
+                        <motion.li
+                          key={i}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.1 + (i * 0.05) }}
+                          className="flex items-start gap-3 text-cloud-text text-sm leading-relaxed p-3 bg-cloud-darker/50 border border-cloud-border rounded-lg hover:border-k8s-blue/30 transition-colors"
+                        >
+                          <span className="text-k8s-blue mt-1">
+                            <Activity size={14} />
+                          </span>
+                          <span>{highlight}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="mt-8 pt-6 border-t border-cloud-border flex flex-wrap gap-4">
+                    <div className="flex items-center gap-2 text-[10px] font-mono text-cloud-muted">
+                      <Database size={12} />
+                      REPLICAS: 1
+                    </div>
+                    <div className="flex items-center gap-2 text-[10px] font-mono text-cloud-muted">
+                      <Box size={12} />
+                      CPU: 200m
+                    </div>
+                    <div className="flex items-center gap-2 text-[10px] font-mono text-cloud-muted">
+                      <Activity size={12} />
+                      MEMORY: 512Mi
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import { resumeData } from '../data/resume';
-import { Zap, TrendingUp, ShieldCheck, Cloud, Activity } from 'lucide-react';
+import { Zap, TrendingUp, ShieldCheck, Cloud, Activity, BarChart3, Target } from 'lucide-react';
 
 const icons = [TrendingUp, Zap, Activity, Cloud, ShieldCheck];
 
@@ -11,20 +11,26 @@ export default function Achievements() {
   const data = resumeData[language];
 
   return (
-    <section id="achievements" className="py-24 px-6 bg-devops-darker">
-      <div className="max-w-4xl mx-auto">
-        <motion.h2
+    <section id="achievements" className="py-24 px-6 bg-cloud-dark relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-k8s-blue/5 blur-[100px] rounded-full pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto relative">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold mb-16 flex items-center gap-4"
+          className="mb-16"
         >
-          <span className="text-devops-accent font-mono text-2xl">02.</span>
-          {t('achievements.title')}
-          <div className="h-px bg-white/10 flex-grow ml-4"></div>
-        </motion.h2>
+          <div className="flex items-center gap-3 text-k8s-blue font-mono text-sm mb-2 uppercase tracking-widest">
+            <BarChart3 size={16} />
+            <span>Optimization_Metrics</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-tight">
+            {t('achievements.title')}
+          </h2>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {data.achievements.map((achievement, index) => {
             const Icon = icons[index % icons.length];
             return (
@@ -34,13 +40,37 @@ export default function Achievements() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-devops-dark p-6 rounded-xl border border-white/5 hover:border-devops-accent/30 transition-all group"
+                className="infra-block group"
               >
-                <div className="w-12 h-12 rounded-lg bg-devops-darker flex items-center justify-center mb-4 group-hover:bg-devops-accent/10 transition-colors">
-                  <Icon className="text-devops-accent" size={24} />
+                <div className="flex justify-between items-start mb-6">
+                  <div className="p-2.5 bg-cloud-darker border border-cloud-border rounded-lg text-k8s-blue group-hover:scale-110 transition-transform">
+                    <Target size={20} />
+                  </div>
+                  <div className="text-[10px] font-mono text-status-success bg-status-success/10 px-2 py-0.5 rounded border border-status-success/20">
+                    OPTIMIZED
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-devops-text mb-3">{achievement.title}</h3>
-                <p className="text-devops-muted text-sm leading-relaxed">{achievement.description}</p>
+
+                <h3 className="text-lg font-bold text-white mb-3 group-hover:text-k8s-blue transition-colors">
+                  {achievement.title}
+                </h3>
+                <p className="text-cloud-muted text-sm leading-relaxed mb-6">
+                  {achievement.description}
+                </p>
+
+                <div className="mt-auto space-y-3 pt-6 border-t border-cloud-border/30">
+                  <div className="flex justify-between text-[9px] font-mono text-cloud-muted uppercase">
+                    <span>Efficiency Gain</span>
+                    <span className="text-status-success">+24.5%</span>
+                  </div>
+                  <div className="h-1 w-full bg-cloud-darker rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: '85%' }}
+                      className="h-full bg-status-success"
+                    />
+                  </div>
+                </div>
               </motion.div>
             );
           })}
