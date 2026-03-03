@@ -99,7 +99,7 @@ export default function Hero() {
           <div className="flex items-center gap-4 text-xl md:text-2xl font-mono text-white mb-8 min-h-[40px]">
             <Terminal className="text-k8s-blue" />
             <span className="opacity-40">{"<"}</span>
-            <span className="font-bold border-r-2 border-k8s-blue pr-1 animate-cursor">
+            <span className="font-bold border-r-2 border-k8s-blue px-2 animate-cursor">
               {displayedRole}
             </span>
             <span className="opacity-40">{"/>"}</span>
@@ -152,15 +152,15 @@ export default function Hero() {
           {/* Topology Connections */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-60" viewBox="0 0 400 400">
             {/* Connection Paths */}
-            <path id="path-ctrl-wkr-a" d="M 200 80 L 80 200" stroke="currentColor" fill="none" className="connection-line connection-active text-cloud-border" strokeWidth="1.5" />
-            <path id="path-ctrl-wkr-b" d="M 200 80 L 320 200" stroke="currentColor" fill="none" className="connection-line connection-active text-cloud-border" strokeWidth="1.5" />
-            <path id="path-wkr-a-data" d="M 80 200 L 200 320" stroke="currentColor" fill="none" className="connection-line text-cloud-border" strokeWidth="1.5" />
-            <path id="path-wkr-b-data" d="M 320 200 L 200 320" stroke="currentColor" fill="none" className="connection-line text-cloud-border" strokeWidth="1.5" />
+            <path id="path-ctrl-wkr-a" d="M 200 80 L 72 220" stroke="currentColor" fill="none" className="connection-line connection-active text-cloud-border" strokeWidth="1.5" />
+            <path id="path-ctrl-wkr-b" d="M 200 80 L 328 220" stroke="currentColor" fill="none" className="connection-line connection-active text-cloud-border" strokeWidth="1.5" />
+            <path id="path-wkr-a-data" d="M 72 220 L 200 310" stroke="currentColor" fill="none" className="connection-line text-cloud-border" strokeWidth="1.5" />
+            <path id="path-wkr-b-data" d="M 328 220 L 200 310" stroke="currentColor" fill="none" className="connection-line text-cloud-border" strokeWidth="1.5" />
 
             {/* Traffic Packets - Animated along paths */}
-            <motion.circle r="2.5" fill="var(--color-k8s-blue)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} style={{ motionPath: 'path("M 200 80 L 80 200")' }} />
-            <motion.circle r="2.5" fill="var(--color-status-success)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: 1 }} style={{ motionPath: 'path("M 200 80 L 320 200")' }} />
-            <motion.circle r="2.5" fill="var(--color-k8s-blue)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: 2 }} style={{ motionPath: 'path("M 320 200 L 200 320")' }} />
+            <motion.circle r="2.5" fill="var(--color-k8s-blue)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} style={{ motionPath: 'path("M 200 80 L 72 220")' }} />
+            <motion.circle r="2.5" fill="var(--color-status-success)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: 1 }} style={{ motionPath: 'path("M 200 80 L 328 220")' }} />
+            <motion.circle r="2.5" fill="var(--color-k8s-blue)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: "100%" }} transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: 2 }} style={{ motionPath: 'path("M 328 220 L 200 310")' }} />
           </svg>
 
           {/* Infrastructure Blocks */}
