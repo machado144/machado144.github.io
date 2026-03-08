@@ -28,7 +28,7 @@ export default function Experience() {
             <Layers size={16} />
             <span>Resource_Explorer</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white uppercase tracking-tight">
             {t('experience.title')}
           </h2>
         </motion.div>
