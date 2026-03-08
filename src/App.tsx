@@ -12,11 +12,13 @@ import Achievements from '@/components/Achievements';
 import Projects from '@/components/Projects';
 import Skills from '@/components/Skills';
 import CommandPalette from '@/components/CommandPalette';
+import ParticleNetwork from '@/components/ParticleNetwork';
 
 export default function App() {
   return (
     <LanguageProvider>
       <div className="min-h-screen bg-cloud-darker text-cloud-text font-sans selection:bg-k8s-blue selection:text-white">
+        <ParticleNetwork fixed />
         <Navbar />
         <CommandPalette />
         <main>

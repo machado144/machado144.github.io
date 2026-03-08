@@ -264,22 +264,16 @@ export const resumeData = {
     ],
     projects: [
       {
-        name: "ReviewForge",
-        url: "https://github.com/AxeForging/reviewforge",
-        description: "AI-powered code reviewer with personality — GitHub Action & CLI. ReviewForge reviews GitHub pull requests using AI (OpenAI, Anthropic, or Gemini), posting line-level comments with severity levels and review verdicts. It supports reviewer personas that add personality to reviews, multilingual output, and learning reports for developer growth.",
-        tags: ["AI", "GitHub Actions", "CLI"]
+        name: "AxeForge Academy",
+        url: "https://axeforge.io/",
+        description: "Elite IT training platform for QA, DevOps, and DevSecOps engineers. Curriculum reverse-engineered from real hiring requirements at top tech companies — practical challenges, portfolio-driven learning, and senior-level mentorship.",
+        tags: ["Mentorship", "DevOps", "QA", "DevSecOps"]
       },
       {
-        name: "aigate",
-        url: "https://github.com/AxeForging/aigate",
-        description: "OS-level sandbox for AI coding agents. Kernel-enforced file, command, and network isolation for Claude Code, Cursor, Copilot, Aider, and any AI tool. Like a Python venv but for AI permissions.",
-        tags: ["Security", "Sandbox", "AI"]
-      },
-      {
-        name: "pb",
-        url: "https://github.com/AxeForging/pb",
-        description: "Cross-platform clipboard CLI for pipes. Works like macOS pbcopy/pbpaste on any OS.",
-        tags: ["CLI", "Tooling", "Cross-platform"]
+        name: "AxeForge Tools",
+        url: "https://tools.axeforge.io/",
+        description: "A suite of development lifecycle tools built for engineers. Utilities and automation helpers covering the full DevOps workflow — from code to deploy.",
+        tags: ["DevOps", "Tooling", "Automation"]
       }
     ]
   },
@@ -547,22 +541,16 @@ export const resumeData = {
     ],
     projects: [
       {
-        name: "ReviewForge",
-        url: "https://github.com/AxeForging/reviewforge",
-        description: "Revisor de código com IA e personalidade — GitHub Action & CLI. O ReviewForge revisa pull requests do GitHub usando IA (OpenAI, Anthropic ou Gemini), postando comentários linha a linha com níveis de severidade e vereditos de revisão. Suporta personas de revisor que adicionam personalidade às revisões, saída multilíngue e relatórios de aprendizado para o crescimento do desenvolvedor.",
-        tags: ["IA", "GitHub Actions", "CLI"]
+        name: "AxeForge Academy",
+        url: "https://axeforge.io/",
+        description: "Plataforma de treinamento de TI de elite para engenheiros de QA, DevOps e DevSecOps. Currículo baseado em requisitos reais de contratação de grandes empresas de tecnologia — desafios práticos, aprendizado orientado a portfólio e mentoria de nível sênior.",
+        tags: ["Mentoria", "DevOps", "QA", "DevSecOps"]
       },
       {
-        name: "aigate",
-        url: "https://github.com/AxeForging/aigate",
-        description: "Sandbox de nível de SO para agentes de codificação de IA. Isolamento de arquivo, comando e rede imposto pelo kernel para Claude Code, Cursor, Copilot, Aider e qualquer ferramenta de IA. Como um venv Python, mas para permissões de IA.",
-        tags: ["Segurança", "Sandbox", "IA"]
-      },
-      {
-        name: "pb",
-        url: "https://github.com/AxeForging/pb",
-        description: "CLI de área de transferência multiplataforma para pipes. Funciona como pbcopy/pbpaste do macOS em qualquer SO.",
-        tags: ["CLI", "Ferramentas", "Multiplataforma"]
+        name: "AxeForge Tools",
+        url: "https://tools.axeforge.io/",
+        description: "Conjunto de ferramentas para o ciclo de vida de desenvolvimento, criado para engenheiros. Utilitários e automações cobrindo todo o fluxo DevOps — do código ao deploy.",
+        tags: ["DevOps", "Ferramentas", "Automação"]
       }
     ]
   },
@@ -787,22 +775,16 @@ export const resumeData = {
     ],
     projects: [
       {
-        name: "ReviewForge",
-        url: "https://github.com/AxeForging/reviewforge",
-        description: "Revisor de código con IA y personalidad — GitHub Action & CLI. ReviewForge revisa pull requests de GitHub usando IA (OpenAI, Anthropic o Gemini), publicando comentarios línea a línea con niveles de severidad y veredictos. Soporta personas de revisor, salida multilingüe e informes de aprendizaje.",
-        tags: ["IA", "GitHub Actions", "CLI"]
+        name: "AxeForge Academy",
+        url: "https://axeforge.io/",
+        description: "Plataforma de formación IT de élite para ingenieros de QA, DevOps y DevSecOps. Currículo basado en requisitos reales de contratación de grandes empresas tecnológicas — retos prácticos, aprendizaje orientado a portafolio y mentoría de nivel senior.",
+        tags: ["Mentoría", "DevOps", "QA", "DevSecOps"]
       },
       {
-        name: "aigate",
-        url: "https://github.com/AxeForging/aigate",
-        description: "Sandbox a nivel de SO para agentes de codificación con IA. Aislamiento de archivos, comandos y red aplicado por el kernel para Claude Code, Cursor, Copilot, Aider y cualquier herramienta de IA. Como un venv de Python pero para permisos de IA.",
-        tags: ["Seguridad", "Sandbox", "IA"]
-      },
-      {
-        name: "pb",
-        url: "https://github.com/AxeForging/pb",
-        description: "CLI de portapapeles multiplataforma para pipes. Funciona como pbcopy/pbpaste de macOS en cualquier SO.",
-        tags: ["CLI", "Herramientas", "Multiplataforma"]
+        name: "AxeForge Tools",
+        url: "https://tools.axeforge.io/",
+        description: "Suite de herramientas para el ciclo de vida del desarrollo, construida para ingenieros. Utilidades y automatización cubriendo todo el flujo DevOps — del código al despliegue.",
+        tags: ["DevOps", "Herramientas", "Automatización"]
       }
     ]
   }
