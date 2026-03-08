@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { useLanguage } from '../context/LanguageContext';
-import { resumeData } from '../data/resume';
+import { useLanguage } from '@/context/LanguageContext';
+import { resumeData } from '@/data/resume';
 import { Zap, TrendingUp, ShieldCheck, Cloud, Activity, BarChart3, Target } from 'lucide-react';
 
 const icons = [TrendingUp, Zap, Activity, Cloud, ShieldCheck];
@@ -58,19 +58,6 @@ export default function Achievements() {
                   {achievement.description}
                 </p>
 
-                <div className="mt-auto space-y-3 pt-6 border-t border-cloud-border/30">
-                  <div className="flex justify-between text-[9px] font-mono text-cloud-muted uppercase">
-                    <span>Efficiency Gain</span>
-                    <span className="text-status-success">+24.5%</span>
-                  </div>
-                  <div className="h-1 w-full bg-cloud-darker rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: '85%' }}
-                      className="h-full bg-status-success"
-                    />
-                  </div>
-                </div>
               </motion.div>
             );
           })}

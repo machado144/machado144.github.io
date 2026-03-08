@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { useLanguage } from '../context/LanguageContext';
-import { resumeData } from '../data/resume';
+import { useLanguage } from '@/context/LanguageContext';
+import { resumeData } from '@/data/resume';
 import { Github, ExternalLink, Box, Globe, Cpu, Workflow, Zap } from 'lucide-react';
 
 export default function Projects() {

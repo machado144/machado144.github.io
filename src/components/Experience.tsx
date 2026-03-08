@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { useLanguage } from '../context/LanguageContext';
-import { resumeData } from '../data/resume';
+import { useLanguage } from '@/context/LanguageContext';
+import { resumeData } from '@/data/resume';
 import { Calendar, MapPin, Search, Database, Terminal, Layers, Box, Activity, ChevronRight } from 'lucide-react';
 
 export default function Experience() {
   const { language, t } = useLanguage();
   const data = resumeData[language];
   const [activeIndex, setActiveIndex] = useState(0);
+  const [showAllHighlights, setShowAllHighlights] = useState(false);
+  const HIGHLIGHTS_PREVIEW = 4;
 
   const activeExp = data.experience[activeIndex];
 
@@ -41,7 +43,7 @@ export default function Experience() {
             {data.experience.map((exp, index) => (
               <button
                 key={`${exp.company}-${index}`}
-                onClick={() => setActiveIndex(index)}
+                onClick={() => { setActiveIndex(index); setShowAllHighlights(false); }}
                 className={`w-full text-left px-4 py-3 rounded-lg border transition-all group flex items-center justify-between ${activeIndex === index
                     ? 'bg-cloud-dark border-k8s-blue/50 text-white'
                     : 'bg-transparent border-transparent text-cloud-muted hover:bg-cloud-dark/50'
@@ -107,7 +109,7 @@ export default function Experience() {
                       spec.accomplishments
                     </div>
                     <ul className="grid grid-cols-1 gap-4">
-                      {activeExp.highlights.map((highlight, i) => (
+                      {activeExp.highlights.slice(0, HIGHLIGHTS_PREVIEW).map((highlight, i) => (
                         <motion.li
                           key={i}
                           initial={{ opacity: 0, y: 10 }}
@@ -115,13 +117,38 @@ export default function Experience() {
                           transition={{ delay: 0.1 + (i * 0.05) }}
                           className="flex items-start gap-3 text-cloud-text text-sm leading-relaxed p-3 bg-cloud-darker/50 border border-cloud-border rounded-lg hover:border-k8s-blue/30 transition-colors"
                         >
-                          <span className="text-k8s-blue mt-1">
-                            <Activity size={14} />
-                          </span>
+                          <span className="text-k8s-blue mt-1"><Activity size={14} /></span>
                           <span>{highlight}</span>
                         </motion.li>
                       ))}
+                      <AnimatePresence initial={false}>
+                        {showAllHighlights && activeExp.highlights.slice(HIGHLIGHTS_PREVIEW).map((highlight, i) => (
+                          <motion.li
+                            key={HIGHLIGHTS_PREVIEW + i}
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.25, delay: i * 0.04, ease: 'easeInOut' }}
+                            style={{ overflow: 'hidden' }}
+                            className="flex items-start gap-3 text-cloud-text text-sm leading-relaxed p-3 bg-cloud-darker/50 border border-cloud-border rounded-lg hover:border-k8s-blue/30 transition-colors"
+                          >
+                            <span className="text-k8s-blue mt-1 shrink-0"><Activity size={14} /></span>
+                            <span>{highlight}</span>
+                          </motion.li>
+                        ))}
+                      </AnimatePresence>
                     </ul>
+                    {activeExp.highlights.length > HIGHLIGHTS_PREVIEW && (
+                      <button
+                        onClick={() => setShowAllHighlights(!showAllHighlights)}
+                        className="mt-4 flex items-center gap-2 text-[11px] font-mono font-bold text-k8s-blue hover:text-white transition-colors uppercase tracking-widest"
+                      >
+                        <motion.span animate={{ rotate: showAllHighlights ? 90 : 0 }} transition={{ duration: 0.2 }}>
+                          <ChevronRight size={14} />
+                        </motion.span>
+                        {showAllHighlights ? t('experience.role.showLess') : `${t('experience.role.showMore')} (${activeExp.highlights.length - HIGHLIGHTS_PREVIEW} more)`}
+                      </button>
+                    )}
                   </div>
 
                   <div className="mt-8 pt-6 border-t border-cloud-border flex flex-wrap gap-4">

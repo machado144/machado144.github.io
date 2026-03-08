@@ -565,5 +565,245 @@ export const resumeData = {
         tags: ["CLI", "Ferramentas", "Multiplataforma"]
       }
     ]
+  },
+  es: {
+    name: "Lucas Machado",
+    title: "Ingeniero DevOps",
+    contact: {
+      location: "Sevilla, España",
+      phone: "+34 661 99 29 07",
+      email: "lucas.dpmachado@gmail.com",
+      linkedin: "lucaspmachado"
+    },
+    profile: "Ingeniero DevOps/Plataforma (10+ años) construyendo sistemas de producción en AWS/GCP y Kubernetes. Implementó GitOps en EKS/GKE con Argo CD, estandarizó templates Helm y entornos efímeros basados en PR con datos enmascarados, TTLs y control de costes. Construyó CI/CD seguro (CircleCI, GitHub Actions, self-hosted runners) con caché, paralelismo, artefactos, puertas de release (Playwright, k6, OPA/Kyverno) y rollbacks automáticos. IaC con Terraform/Pulumi para clusters, IAM y redes. Elevó la observabilidad (Datadog/Prometheus/Grafana, OpenTelemetry), definió SLIs/SLOs y health checks, mejoró el on-call. Colaboración multidisciplinar; experiencia práctica con Node.js/TS, Python, Istio/Kong; impulsa entregas fiables y eficientes en costes.",
+    skills: [
+      "Git", "Docker", "Kubernetes", "Linux", "Google Cloud Platform", "Amazon AWS",
+      "Cypress", "Golang", "NodeJS", "Ruby", "Bash Scripting", "Elasticsearch",
+      "NewRelic", "Prometheus", "SQL / NoSQL", "DataDog", "Jenkins", "Grafana",
+      "Istio", "Kong Gateway", "GitOps", "CI/CD", "Playwright", "ArgoCD"
+    ],
+    languages: [
+      { name: "Portugués", level: "Nativo" },
+      { name: "Español; Castellano", level: "Avanzado" },
+      { name: "Inglés", level: "Fluido" }
+    ],
+    experience: [
+      {
+        role: "Ingeniero DevOps",
+        company: "Demand.io",
+        location: "Los Ángeles, California",
+        period: "Sep 2024 — Presente",
+        highlights: [
+          "Creó templates de despliegue reutilizables para configurar rápidamente nuevas aplicaciones con entornos de dev, efímeros y prod listos para usar, incluyendo monitoreo automatizado, aprovisionamiento de infraestructura e integración de DNS.",
+          "Migró múltiples microservicios (TypeScript, Python y PHP) a flujos de despliegue continuo usando ArgoCD en clusters GKE, habilitando prácticas GitOps, simplificando despliegues, gestión de releases, rollbacks y entornos efímeros.",
+          "Implementó tests e2e desde cero con Playwright (web y APIs) manteniendo sus flujos en GitHub Actions con informes accesibles a través de URL interna privada con implementación personalizada de Allure.",
+          "Desplegó aplicación OpenWebUI propia con múltiples integraciones MCP como BigQuery, GitHub, Notion, Slack, ElasticSearch y GCP.",
+          "Creó suites de test k6 para la mayoría de microservicios con configuraciones de escalado usando self-hosted runners, exportando resultados en tiempo real a InfluxDB.",
+          "Construyó flujos GitHub Actions seguros y self-hosted runners para ejecutar jobs dentro de VPCs internas, mejorando la seguridad y el aislamiento usando workload identity pools para autenticación en la nube.",
+          "Desplegó y extendió charts Helm para aplicaciones, creando charts específicos para estandarizar despliegues, gestionando CronJobs, Ingress, ConfigMaps, recursos de infraestructura con Crossplane y secretos con ExternalSecrets.",
+          "Migró la infraestructura existente a IaC usando Pulumi con TypeScript, integrando GitHub Actions para validación y gestión de recursos GKE, IAM, usuarios, roles y grupos.",
+          "Desarrolló y mantuvo pipelines de datos con Cloud Dataflow para flujos CDC, sincronizando CloudSQL (MySQL y PostgreSQL) con BigQuery.",
+          "Implementó instrumentación personalizada de telemetría integrando OpenTelemetry, Elastic Cloud y GCP Profiling para observabilidad completa.",
+          "Mejoró el monitoreo añadiendo checks sintéticos y políticas de alerta basadas en métricas y logs de GCP.",
+          "Creó flujos GitHub Actions reutilizables para despliegues, gestión de secretos, validación de IaC, tests E2E y check-ins con puertas de seguridad para apps Python, NodeJS y Frontend.",
+          "Inició migración de Frontend de GKE a Cloudflare Pages con estrategia de caché en CDN y caché dinámico con KV.",
+          "Configuró Cloudflare Zero Trust con Cloudflare Access para herramientas e aplicaciones internas en demand.io.",
+          "Implementó política como código con OPA para recursos Pulumi y Kyverno para validar recursos Kubernetes con etiquetas, recursos y anotaciones adecuadas."
+        ]
+      },
+      {
+        role: "Ingeniero de Automatización",
+        company: "Kea",
+        location: "Mountain View, California",
+        period: "Ene 2024 — Sep 2024",
+        highlights: [
+          "Mejoró el monitoreo de aplicaciones con Grafana, Faro, Loki, Tempo, OpenTelemetry y APM Stack, combinado con tests de rendimiento K6, para identificar memory leaks y apps con mal comportamiento.",
+          "Implementó monitoreo sintético para microservicios, configurando alertas para fallos de interacción, retrasos de respuesta e indisponibilidad de integraciones de terceros.",
+          "Desarrolló cobertura E2E con Playwright, creando flujos para tests nocturnos. Desplegó dashboard de monitoreo en EKS con charts Helm.",
+          "Mejoró los tests de integración con Playwright para varios servicios, manteniendo cobertura unitaria con Jest y Nock.",
+          "Gestionó procesos de on-call y release, asegurando despliegues seguros en producción con git flow. Desarrolló charts Helm y utilizó Terraform con GitHub Actions.",
+          "Creó y mantuvo scripts bash para despliegues en GitHub Actions y configuraciones locales, incluyendo túneles Cloudflare y configuración AWS.",
+          "Creó pipelines reutilizables para gestionar aplicaciones Node.js con NPM y caché NPM.",
+          "Creó charts distribuidos Helm para gestión dinámica de aplicaciones con estrategia multi-source junto con ArgoCD."
+        ]
+      },
+      {
+        role: "Ingeniero DevOps",
+        company: "Kiwify",
+        location: "São Paulo",
+        period: "May 2023 — Oct 2023",
+        highlights: [
+          "Migró aplicaciones de GCP VM Instances, Google App Engine y CloudFunctions V1 a Cloud Run y GKE con Helm, GitOps y ArgoCD, reduciendo la facturación al menos un 20%.",
+          "Desplegó la stack de monitoreo DataDog en Kubernetes y añadió monitoreo sintético y alertas basadas en problemas de infraestructura.",
+          "Desarrolló flujos GitHub Actions reutilizables para despliegues estáticos, Cloudflare Workers y Pages, reinicio y rollback de ArgoCD, integrando SonarQube, Nuclei, Snyk y Semgrep.",
+          "Migró la infraestructura a Terraform con backend GCS, creando módulos para CloudSQL. Automatizó despliegues con GitHub Actions.",
+          "Creó scripts Golang para replicar versiones exactas de secretos y dependencias en entornos efímeros para depuración.",
+          "Inició la migración de GKE/GCS a EKS/S3, trabajando en entorno multi-cloud con AWS SSO integrado con Google Workspace.",
+          "Creó y mantuvo scripts bash para despliegues y configuraciones locales de GCP y proxies CloudSQL.",
+          "Creó pipelines reutilizables para gestionar aplicaciones Node.js con NPM y caché NPM."
+        ]
+      },
+      {
+        role: "Ingeniero DevOps",
+        company: "Andela",
+        location: "Nueva York, NY, EE.UU.",
+        period: "Jun 2022 — May 2023",
+        highlights: [
+          "Contratado como ingeniero interno de DevOps tras trabajar meses para el cliente Andela desde Holonic Consulting.",
+          "Trabajó en la recreación del ecosistema v1 a v2 usando Terraform, GKE, ArgoCD, GitHub Actions, Jenkins, Datadog, Kong e Istio Service Mesh, migrando Cloud Functions v1, App Engines y VM instances a GKE.",
+          "Creó Shared Libraries de Jenkins con Groovy para despliegues, gestión de secretos, migraciones e infraestructura CRUD con Terraform.",
+          "Configuró Datadog en el cluster, introdujo stacks RUM y APM, lideró formación de equipos internos. Añadió monitoreo sintético y tests e2e con Cypress.",
+          "Creó Plugins de Kong para autorización y reglas de reenvío durante migraciones de V1 a v2 usando Lua y Golang.",
+          "Creó charts Helm reutilizables con integraciones Kong e Istio, probes y patrones para aplicaciones fiables.",
+          "Añadió alertas de facturación y ahorró más de 10.000 USD/mes identificando y corrigiendo el mal uso de recursos de v1.",
+          "Trabajó en desafíos de entrevista, proceso técnico para el área DevOps y formación de nuevos miembros del equipo."
+        ]
+      },
+      {
+        role: "Ingeniero DevOps",
+        company: "Holonic",
+        location: "Silicon Valley, CA, EE.UU.",
+        period: "Oct 2021 — Jun 2022",
+        highlights: [
+          "Trabajó en aceleradora de startups de Silicon Valley para el cliente Andela, creando POC para su nueva versión de aplicación con GCP, Kubernetes y Microservicios con GitHub Actions.",
+          "Responsable de toda la configuración de proyectos GCP, entornos, grupos de usuarios, roles y permisos con roles IAM personalizados usando principios de mínimo privilegio.",
+          "Realizó demos para el cliente, presentando cada entrega y POC con Kubernetes, Kong y Nginx como gateways, gestionando Elastic Stack para la primera versión ML de la app."
+        ]
+      },
+      {
+        role: "DevOps",
+        company: "Webjump (Nestle / Ambev)",
+        location: "São Paulo",
+        period: "Feb 2019 — Oct 2021",
+        highlights: [
+          "Responsable de mantener pipelines automatizados, flujos de desarrollo y estrategias de monitoreo entre aplicaciones en Webjump.",
+          "Aumentó la cobertura de tests para frontend, backend y scripts de rendimiento, integrándolos en pipelines automatizados.",
+          "Creó y mantuvo una Stack ELK para monitoreo efectivo de aplicaciones y fallos del sistema.",
+          "Desarrolló y mantuvo Stacks IaC usando CloudFormation, Terraform y Packer.",
+          "Implementó Integración Continua con Azure Pipelines y desarrolló una solución para escalar tests usando AWS ECS.",
+          "Implementó Benchmarking de Rendimiento Continuo con Jenkins, K6 y Grafana/NewRelic.",
+          "Gestionó Azure DevOps Pipelines y auditó recursos Azure con Azure SDK y Azure CLI."
+        ]
+      },
+      {
+        role: "Ingeniero de Desarrollo de Software en Tests",
+        company: "Rockstar Coders",
+        location: "Chicago, IL, EE.UU.",
+        period: "Sep 2018 — Feb 2019",
+        highlights: [
+          "Responsable de implementar automatización con Ruby y NodeJS en varios proyectos en RockStarCoders.",
+          "Construyó y escaló todos los tests usando CircleCI y recursos AWS con estructuras basadas en contenedores.",
+          "Desarrolló y mantuvo soluciones de automatización usando NodeJS, Ruby, Bash Scripts y Webdriver.io."
+        ]
+      },
+      {
+        role: "Ingeniero de Desarrollo de Software en Tests",
+        company: "Webjump (Ambev / InBev)",
+        location: "São Paulo",
+        period: "Feb 2018 — Sep 2018",
+        highlights: [
+          "Implementó automatización con Ruby en entorno PHP (Magento) para tests frontend y backend en ParceiroAmbev y Proyecto LAS (InBev).",
+          "Implementó Integración Continua usando CircleCI con instancias paralelas de contenedores personalizados."
+        ]
+      },
+      {
+        role: "Ingeniero de Desarrollo de Software en Tests",
+        company: "Vilas Boas IT",
+        location: "São Paulo",
+        period: "Jun 2016 — Ene 2018",
+        highlights: [
+          "Lideró cada squad de QA en VilasBoasIT, implementando nuevas tecnologías y definiendo la guía de estilo para todos los squads.",
+          "Creó reportes personalizados para todas las segmentaciones de Automatización (API/Web/Mobile).",
+          "Inició la implementación de frameworks de test desde cero usando Cucumber, Capybara y RSpec."
+        ]
+      },
+      {
+        role: "Líder de QA",
+        company: "Anheuser-Busch InBev",
+        location: "Campinas",
+        period: "Oct 2016 — Abr 2017",
+        highlights: [
+          "Implementó nuevas tecnologías como Líder de QA y definió la guía de estilo para todos los squads.",
+          "Creó Scripts de Rendimiento usando Scala y Gatling para garantizar el equilibrio y escalabilidad de la aplicación."
+        ]
+      },
+      {
+        role: "Analista Sénior de QA",
+        company: "Geru",
+        location: "São Paulo",
+        period: "Mar 2016 — Jul 2016",
+        highlights: [
+          "Analizó y escribió escenarios usando Gherkin siguiendo prácticas BDD.",
+          "Desarrolló soluciones de test Frontend usando Ruby, JRuby, JavaScript y Selenium-Webdriver con Capybara y RSpec."
+        ]
+      },
+      {
+        role: "Analista de QA",
+        company: "Dafiti",
+        location: "São Paulo",
+        period: "Jul 2015 — Feb 2016",
+        highlights: [
+          "Analizó y escribió escenarios usando Gherkin siguiendo prácticas BDD.",
+          "Desarrolló soluciones de test Frontend usando Ruby, JavaScript y Selenium-Webdriver.",
+          "Realizó tests de rendimiento usando JMeter."
+        ]
+      },
+      {
+        role: "Analista de QA - Freelancer",
+        company: "Dafiti",
+        location: "São Paulo",
+        period: "Jun 2015 — Oct 2015",
+        highlights: [
+          "Analizó y desarrolló Tests Automatizados para aplicaciones móviles (iOS).",
+          "Escribió escenarios en Gherkin usando BDD y desarrolló soluciones usando Ruby con Calabash, RSpec y Cucumber."
+        ]
+      }
+    ],
+    courses: [
+      "Bootcamp Ruby on Rails, Campus Code",
+      "Fundamentos ITIL V3, Impacta"
+    ],
+    achievements: [
+      {
+        title: "Optimización de Costes y Eficiencia en la Nube",
+        description: "Redujo la facturación de GCP un 20% migrando a Cloud Run/GKE y ahorró más de 10.000 USD/mes identificando y resolviendo la mala asignación de recursos."
+      },
+      {
+        title: "Dominio de GitOps y CI/CD",
+        description: "Simplificó despliegues usando ArgoCD, GitHub Actions y Jenkins, habilitando entornos efímeros, rollbacks automáticos y puertas de release seguras."
+      },
+      {
+        title: "Observabilidad Avanzada",
+        description: "Elevó el monitoreo del sistema con Datadog, OpenTelemetry, Prometheus y Grafana, definiendo SLIs/SLOs y mejorando significativamente los tiempos de respuesta de on-call."
+      },
+      {
+        title: "Infraestructura como Código (IaC)",
+        description: "Gestionó infraestructuras cloud complejas en AWS y GCP usando Terraform, Pulumi y Crossplane con aplicación estricta de política como código (OPA/Kyverno)."
+      },
+      {
+        title: "Aseguramiento de Calidad y Automatización",
+        description: "Construyó frameworks robustos de tests E2E y de rendimiento desde cero usando Playwright, Cypress y K6, garantizando alta fiabilidad para microservicios críticos."
+      }
+    ],
+    projects: [
+      {
+        name: "ReviewForge",
+        url: "https://github.com/AxeForging/reviewforge",
+        description: "Revisor de código con IA y personalidad — GitHub Action & CLI. ReviewForge revisa pull requests de GitHub usando IA (OpenAI, Anthropic o Gemini), publicando comentarios línea a línea con niveles de severidad y veredictos. Soporta personas de revisor, salida multilingüe e informes de aprendizaje.",
+        tags: ["IA", "GitHub Actions", "CLI"]
+      },
+      {
+        name: "aigate",
+        url: "https://github.com/AxeForging/aigate",
+        description: "Sandbox a nivel de SO para agentes de codificación con IA. Aislamiento de archivos, comandos y red aplicado por el kernel para Claude Code, Cursor, Copilot, Aider y cualquier herramienta de IA. Como un venv de Python pero para permisos de IA.",
+        tags: ["Seguridad", "Sandbox", "IA"]
+      },
+      {
+        name: "pb",
+        url: "https://github.com/AxeForging/pb",
+        description: "CLI de portapapeles multiplataforma para pipes. Funciona como pbcopy/pbpaste de macOS en cualquier SO.",
+        tags: ["CLI", "Herramientas", "Multiplataforma"]
+      }
+    ]
   }
 };
