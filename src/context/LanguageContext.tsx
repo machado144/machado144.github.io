@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-type Language = 'en' | 'pt';
+type Language = 'en' | 'pt' | 'es';
 
 interface LanguageContextType {
   language: Language;
@@ -86,6 +86,45 @@ const translations = {
     'palette.desc.email': 'lucas.dpmachado@gmail.com',
     'palette.cmd.linkedin': 'curl https://linkedin.com',
     'palette.desc.linkedin': 'Ver Perfil no LinkedIn',
+  },
+  es: {
+    'nav.about': 'Sobre mí',
+    'nav.experience': 'Experiencia',
+    'nav.skills': 'Habilidades',
+    'nav.contact': 'Contacto',
+    'hero.greeting': 'Hola, soy',
+    'hero.cta': 'Ver Mi Trabajo',
+    'hero.contact': 'Contáctame',
+    'about.title': 'Perfil',
+    'experience.title': 'Historial Profesional',
+    'experience.showMore': 'Ver Más Experiencias',
+    'experience.showLess': 'Ver Menos Experiencias',
+    'experience.role.showMore': 'Ver Más',
+    'experience.role.showLess': 'Ver Menos',
+    'achievements.title': 'Lo Que Puedo Aportarte',
+    'nav.achievements': 'Valor',
+    'projects.title': 'Código Abierto y Proyectos',
+    'nav.projects': 'Proyectos',
+    'skills.title': 'Habilidades y Tecnologías',
+    'languages.title': 'Idiomas',
+    'courses.title': 'Cursos',
+    'chat.placeholder': 'Pregúntame algo sobre Lucas...',
+    'chat.title': 'Asistente DevOps',
+    'chat.suggestions': 'Sugerencias:',
+    'chat.suggestion.1': '¿Cuál es tu experiencia con Kubernetes?',
+    'chat.suggestion.2': 'Háblame de tus habilidades en CI/CD.',
+    'chat.suggestion.3': '¿Qué idiomas hablas?',
+    'palette.tip': 'Pulsa ⌘K o / para comandos',
+    'palette.search': 'Buscar comandos...',
+    'palette.empty': 'No se encontraron comandos.',
+    'palette.cmd.cloud': 'cat /skills/cloud_providers',
+    'palette.desc.cloud': 'GCP, AWS, Azure, Cloudflare',
+    'palette.cmd.k8s': 'kubectl get clusters',
+    'palette.desc.k8s': 'Kubernetes, GKE, EKS, Helm, ArgoCD',
+    'palette.cmd.email': 'mail -s "Hola" lucas',
+    'palette.desc.email': 'lucas.dpmachado@gmail.com',
+    'palette.cmd.linkedin': 'curl https://linkedin.com',
+    'palette.desc.linkedin': 'Ver Perfil de LinkedIn',
   }
 };
 
@@ -95,7 +134,8 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   const [language, setLanguage] = useState<Language>('en');
 
   const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations['en']] || key;
+    const lang = translations[language] as Record<string, string>;
+    return lang[key] || (translations['en'] as Record<string, string>)[key] || key;
   };
 
   return (

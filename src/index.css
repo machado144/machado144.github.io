@@ -5,21 +5,25 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  --color-k8s-blue: #326ce5;
-  --color-cloud-dark: #0d1117;
-  --color-cloud-darker: #010409;
-  --color-cloud-border: #30363d;
-  --color-cloud-text: #c9d1d9;
-  --color-cloud-muted: #8b949e;
+  --color-k8s-blue: #f97316;
+  --color-cloud-dark: #0d0d0d;
+  --color-cloud-darker: #080808;
+  --color-cloud-border: #262626;
+  --color-cloud-text: #e5e5e5;
+  --color-cloud-muted: #737373;
 
-  --color-status-success: #2ea043;
-  --color-status-warning: #d29922;
-  --color-status-error: #f85149;
+  --color-status-success: #14b8a6;
+  --color-status-warning: #fbbf24;
+  --color-status-error: #ef4444;
 
   --color-accent: var(--color-k8s-blue);
 
-  --shadow-dashboard: 0 0 15px rgba(50, 108, 229, 0.1);
-  --shadow-infra: 0 10px 20px rgba(50, 108, 229, 0.05);
+  --shadow-dashboard: 0 0 15px rgba(249, 115, 22, 0.12);
+  --shadow-infra: 0 10px 20px rgba(249, 115, 22, 0.06);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {

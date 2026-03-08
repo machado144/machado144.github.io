@@ -1,7 +1,7 @@
 import React from 'react';
-import { motion } from 'motion/react';
-import { useLanguage } from '../context/LanguageContext';
-import { resumeData } from '../data/resume';
+import { motion } from 'motion/react'; // still used for section/card entrance animations
+import { useLanguage } from '@/context/LanguageContext';
+import { resumeData } from '@/data/resume';
 import { Cpu, Terminal, Activity, ShieldCheck, Database, Layout } from 'lucide-react';
 
 export default function Skills() {
@@ -55,7 +55,7 @@ export default function Skills() {
             <Cpu size={16} />
             <span>Resource_Allocation</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white uppercase tracking-tight">
             {t('skills.title')}
           </h2>
         </motion.div>
@@ -79,22 +79,14 @@ export default function Skills() {
                 </h3>
               </div>
 
-              <div className="space-y-4">
-                {group.skills.map((skill, i) => (
-                  <div key={skill} className="space-y-1.5">
-                    <div className="flex justify-between items-center text-[10px] font-mono">
-                      <span className="text-cloud-text">{skill}</span>
-                      <span className="text-k8s-blue">ALLOCATED</span>
-                    </div>
-                    <div className="h-1 w-full bg-cloud-darker rounded-full overflow-hidden border border-cloud-border/30">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${80 + Math.random() * 20}%` }}
-                        transition={{ duration: 1, delay: 0.2 + (i * 0.1) }}
-                        className="h-full bg-k8s-blue/50 group-hover:bg-k8s-blue transition-colors"
-                      />
-                    </div>
-                  </div>
+              <div className="flex flex-wrap gap-2">
+                {group.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-2.5 py-1 text-[11px] font-mono font-semibold bg-cloud-darker border border-cloud-border rounded text-cloud-muted hover:border-k8s-blue/60 hover:text-white transition-all cursor-default"
+                  >
+                    {skill}
+                  </span>
                 ))}
               </div>
             </motion.div>

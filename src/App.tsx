@@ -4,20 +4,21 @@
  */
 
 import React from 'react';
-import { LanguageProvider } from './context/LanguageContext';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Experience from './components/Experience';
-import Achievements from './components/Achievements';
-import Projects from './components/Projects';
-import Skills from './components/Skills';
-import ChatBot from './components/ChatBot';
-import CommandPalette from './components/CommandPalette';
+import { LanguageProvider } from '@/context/LanguageContext';
+import Navbar from '@/components/Navbar';
+import Hero from '@/components/Hero';
+import Experience from '@/components/Experience';
+import Achievements from '@/components/Achievements';
+import Projects from '@/components/Projects';
+import Skills from '@/components/Skills';
+import CommandPalette from '@/components/CommandPalette';
+import ParticleNetwork from '@/components/ParticleNetwork';
 
 export default function App() {
   return (
     <LanguageProvider>
       <div className="min-h-screen bg-cloud-darker text-cloud-text font-sans selection:bg-k8s-blue selection:text-white">
+        <ParticleNetwork fixed />
         <Navbar />
         <CommandPalette />
         <main>
@@ -27,8 +28,6 @@ export default function App() {
           <Projects />
           <Skills />
         </main>
-        <ChatBot />
-
         <footer className="py-12 bg-cloud-dark border-t border-cloud-border">
           <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="flex items-center gap-2 text-k8s-blue font-mono font-bold">

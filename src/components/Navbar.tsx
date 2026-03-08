@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '@/context/LanguageContext';
 import { Terminal, Menu, X, Globe } from 'lucide-react';
 
 export default function Navbar() {
@@ -16,9 +16,9 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'pt' : 'en');
-  };
+  const languageCycle: Record<string, 'en' | 'pt' | 'es'> = { en: 'pt', pt: 'es', es: 'en' };
+  const languageLabel: Record<string, string> = { en: 'EN-US', pt: 'PT-BR', es: 'ES' };
+  const toggleLanguage = () => setLanguage(languageCycle[language]);
 
   const navLinks = [
     { name: t('nav.about'), href: '#about' },
@@ -80,7 +80,7 @@ export default function Navbar() {
             className="flex items-center gap-2 px-3 py-1.5 rounded bg-cloud-darker border border-cloud-border hover:border-k8s-blue/50 text-[10px] font-bold transition-all text-cloud-text"
           >
             <Globe size={12} className="text-k8s-blue" />
-            {language.toUpperCase()}
+            {languageLabel[language]}
           </motion.button>
         </div>
 

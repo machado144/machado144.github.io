@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { useLanguage } from '../context/LanguageContext';
-import { resumeData } from '../data/resume';
+import { useLanguage } from '@/context/LanguageContext';
+import { resumeData } from '@/data/resume';
 import { Terminal, Activity, Cpu, Server, Network, Database, Zap, Clock, ShieldCheck, Bug, Cloud, Box } from 'lucide-react';
 import { ReactFlow, Handle, Position, Background, Edge, Node, getBezierPath, BaseEdge } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
@@ -239,10 +239,10 @@ export default function Hero() {
   }, [displayedRole, isDeleting, roleIndex]);
 
   return (
-    <section id="hero" className="min-h-screen pt-32 pb-20 px-6 cluster-grid relative overflow-hidden">
+    <section id="about" className="min-h-screen pt-32 pb-20 px-6 cluster-grid relative overflow-hidden">
       {/* Background Glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-k8s-blue/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-status-success/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-k8s-blue/3 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
         {/* Identity & Health */}
@@ -263,7 +263,7 @@ export default function Hero() {
 
           <div className="flex flex-col mb-4">
             <span className="text-k8s-blue font-mono text-[10px] uppercase tracking-[0.3em] mb-1">NODE_ID: L-MACHADO-01</span>
-            <h1 className="text-5xl md:text-7xl font-bold text-white uppercase tracking-tighter leading-none">
+            <h1 className="text-5xl md:text-7xl font-extrabold text-white uppercase tracking-tighter leading-none">
               {data.name}<span className="text-k8s-blue">_</span>
             </h1>
           </div>

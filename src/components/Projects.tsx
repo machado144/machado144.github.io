@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { useLanguage } from '../context/LanguageContext';
-import { resumeData } from '../data/resume';
-import { Github, ExternalLink, Box, Globe, Cpu, Workflow, Zap } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import { resumeData } from '@/data/resume';
+import { ExternalLink, Globe } from 'lucide-react';
 
 export default function Projects() {
   const { language, t } = useLanguage();
@@ -23,34 +23,33 @@ export default function Projects() {
             <Globe size={16} />
             <span>Service_Discovery</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-tight">
-            {t('projects.title')}
-          </h2>
+          <div className="flex items-center gap-5">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white uppercase tracking-tight">
+              {t('projects.title')}
+            </h2>
+            <div className="flex items-center gap-2 border border-cloud-border bg-cloud-darker rounded-xl px-3 py-1.5">
+              <img src="/axeforge-logo.png" alt="AxeForge" className="w-6 h-6 rounded-md object-cover" />
+              <span className="text-[11px] font-mono font-bold text-cloud-muted uppercase tracking-widest">AxeForge</span>
+            </div>
+          </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl">
           {data.projects.map((project, index) => (
-            <motion.div
+            <motion.a
               key={index}
+              href={project.url}
+              target="_blank"
+              rel="noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="infra-block group flex flex-col h-full"
+              className="infra-block group flex flex-col h-full cursor-pointer"
             >
-              <div className="flex justify-between items-start mb-6">
-                <div className="p-2.5 bg-cloud-darker border border-cloud-border rounded-lg text-k8s-blue group-hover:scale-110 transition-transform">
-                  <Box size={24} />
-                </div>
-                <div className="flex gap-3">
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="p-2 bg-cloud-darker border border-cloud-border rounded text-cloud-muted hover:text-white hover:border-k8s-blue/50 transition-all"
-                  >
-                    <Github size={18} />
-                  </a>
+              <div className="flex justify-end items-start mb-6">
+                <div className="p-2 bg-cloud-darker border border-cloud-border rounded text-cloud-muted group-hover:text-white group-hover:border-k8s-blue/50 transition-all">
+                  <ExternalLink size={16} />
                 </div>
               </div>
 
@@ -60,24 +59,13 @@ export default function Projects() {
                 </h3>
                 <div className="status-badge status-online py-0 px-1.5 h-5">
                   <span className="w-1 h-1 rounded-full bg-status-success" />
-                  STABLE
+                  LIVE
                 </div>
               </div>
 
               <p className="text-cloud-muted text-sm leading-relaxed mb-6 flex-grow">
                 {project.description}
               </p>
-
-              <div className="grid grid-cols-2 gap-4 mb-6 border-y border-cloud-border/30 py-4 font-mono text-[9px] uppercase tracking-wider text-cloud-muted">
-                <div className="flex items-center gap-2">
-                  <Cpu size={12} className="text-k8s-blue" />
-                  <span>TYPE: LoadBalancer</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Zap size={12} className="text-status-warning" />
-                  <span>VERSION: v2.0.4</span>
-                </div>
-              </div>
 
               <div className="flex flex-wrap gap-2 mt-auto">
                 {project.tags.map((tag, i) => (
@@ -89,7 +77,7 @@ export default function Projects() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>

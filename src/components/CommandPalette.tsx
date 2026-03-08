@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '@/context/LanguageContext';
 import { Terminal, Search, X, ChevronRight, Command, Info, ArrowUpRight } from 'lucide-react';
 
 export default function CommandPalette() {
