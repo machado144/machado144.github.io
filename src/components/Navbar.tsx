@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useLanguage } from '@/context/LanguageContext';
-import { Terminal, Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 
 export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
@@ -17,7 +17,7 @@ export default function Navbar() {
   }, []);
 
   const languageCycle: Record<string, 'en' | 'pt' | 'es'> = { en: 'pt', pt: 'es', es: 'en' };
-  const languageLabel: Record<string, string> = { en: 'EN-US', pt: 'PT-BR', es: 'ES' };
+  const languageLabel: Record<string, string> = { en: 'EN', pt: 'PT', es: 'ES' };
   const toggleLanguage = () => setLanguage(languageCycle[language]);
 
   const navLinks = [
@@ -30,33 +30,26 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${isScrolled
-        ? 'bg-cloud-dark/95 backdrop-blur-md border-cloud-border py-2'
-        : 'bg-cloud-darker/50 backdrop-blur-sm border-transparent py-4'
-        }`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
+        isScrolled
+          ? 'bg-cloud-darker/85 backdrop-blur-md border-cloud-border py-2.5'
+          : 'bg-transparent backdrop-blur-sm border-transparent py-4'
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <div className="flex items-center gap-6">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-2 text-k8s-blue font-mono font-bold text-xl"
-          >
-            <Terminal size={20} className="text-k8s-blue" />
-            <span className="tracking-tight text-white uppercase tracking-[0.1em]">cluster<span className="text-k8s-blue">:</span>production</span>
-          </motion.div>
+      <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
+        <motion.a
+          href="#about"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="flex items-center gap-2 font-extrabold text-base tracking-tight text-white"
+        >
+          <span className="text-white">lucas</span>
+          <span className="text-k8s-blue">/</span>
+          <span className="text-white">machado</span>
+        </motion.a>
 
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1 bg-cloud-darker border border-cloud-border rounded text-[10px] font-mono text-cloud-muted">
-            <span className="w-2 h-2 rounded-full bg-status-success animate-pulse" />
-            <span>REGION: EU-WEST-1</span>
-            <span className="mx-1 opacity-20">|</span>
-            <span>ROLE: PLATFORM-ENG</span>
-          </div>
-        </div>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          <nav className="flex gap-1">
+        <div className="hidden md:flex items-center gap-1">
+          <nav className="flex gap-0.5 mr-2">
             {navLinks.map((link, i) => (
               <motion.a
                 key={link.name}
@@ -64,30 +57,27 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
-                className="px-3 py-1.5 text-xs font-medium text-cloud-muted hover:text-white hover:bg-white/5 rounded transition-all"
+                className="px-3 py-1.5 text-sm font-medium text-cloud-muted hover:text-white transition-colors"
               >
                 {link.name}
               </motion.a>
             ))}
           </nav>
 
-          <div className="h-4 w-[1px] bg-cloud-border mx-2" />
-
           <motion.button
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             onClick={toggleLanguage}
-            className="flex items-center gap-2 px-3 py-1.5 rounded bg-cloud-darker border border-cloud-border hover:border-k8s-blue/50 text-[10px] font-bold transition-all text-cloud-text"
+            className="ml-2 flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-cloud-border hover:border-k8s-blue/50 hover:bg-k8s-blue/5 text-xs font-bold transition-all text-cloud-text"
           >
             <Globe size={12} className="text-k8s-blue" />
             {languageLabel[language]}
           </motion.button>
         </div>
 
-        {/* Mobile Toggle */}
-        <div className="md:hidden flex items-center gap-4">
-          <button onClick={toggleLanguage} className="p-2 text-cloud-muted hover:text-white">
-            <Globe size={18} />
+        <div className="md:hidden flex items-center gap-2">
+          <button onClick={toggleLanguage} className="px-2.5 py-1.5 text-xs font-bold text-cloud-text border border-cloud-border rounded-md">
+            {languageLabel[language]}
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -98,14 +88,13 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
           className="md:hidden bg-cloud-dark border-b border-cloud-border px-6 py-4"
         >
-          <nav className="flex flex-col gap-2">
+          <nav className="flex flex-col gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.name}

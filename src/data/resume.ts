@@ -1,14 +1,14 @@
 export const resumeData = {
   en: {
     name: "Lucas Machado",
-    title: "DevOps Engineer",
+    title: "Platform Engineer · DevOps Lead",
     contact: {
-      location: "Sevilla, Spain",
+      location: "Seville, Andalusia, Spain",
       phone: "+34 661 99 29 07",
       email: "lucas.dpmachado@gmail.com",
       linkedin: "lucaspmachado"
     },
-    profile: "DevOps/Platform engineer (10+ yrs) building production systems on AWS/GCP & Kubernetes. Shipped GitOps on EKS/GKE with Argo CD, standardized Helm templates, and PR-based ephemeral envs with seeded/masked data, TTLs, and cost controls. Built secure CI/CD (CircleCI, GitHub Actions, self-hosted runners) with caching, parallelism, artifacts, release gates (Playwright, k6, OPA/Kyverno), and automated rollbacks. IaC with Terraform/Pulumi for clusters, IAM, and networking. Elevated observability (Datadog/Prometheus/Grafana, OpenTelemetry), defined SLIs/SLOs and health checks, improved on-call. Partner cross-functionally; hands-on Node.js/TS, Python, Istio/Kong; drive reliable, cost-aware delivery.",
+    profile: "Platform Engineer and DevOps Lead with 10+ years building scalable cloud infrastructure, GitOps workflows, and developer-platform tooling. I architect cloud-native systems and migrate legacy stacks into resilient, modern platforms — from thousands to millions of users — across AWS, GCP, and Kubernetes (GKE, EKS, AKS). I work the full DevOps spectrum: IaC (Terraform, Pulumi, Crossplane), service mesh (Istio, Kong with custom Go/Lua plugins), CI/CD (GitHub Actions, Jenkins shared libs, CircleCI), and observability (Datadog, Prometheus, Grafana, OpenTelemetry). Comfortable in hands-on engineering and tech leadership — building from scratch or scaling what exists.",
     skills: [
       "Git", "Docker", "Kubernetes", "Linux", "Google Cloud Platform", "Amazon AWS",
       "Cypress", "Golang", "NodeJS", "Ruby", "Bash Scripting", "Elasticsearch",
@@ -22,10 +22,28 @@ export const resumeData = {
     ],
     experience: [
       {
-        role: "DevOps Engineer",
+        role: "Platform Engineer",
+        company: "Proxify",
+        location: "Sweden (Remote)",
+        period: "Nov 2025 — Present",
+        highlights: [
+          "Built reusable GitHub Actions workflows and custom actions for Terraform, deployments, secret handling, semantic versioning, and release automation across GCP.",
+          "Implemented least-privilege IAM with Workload Identity, scoped service accounts, custom roles, temporary grants, and group-based access — reducing shared credentials and direct user bindings.",
+          "Migrated GKE workloads to secure node pools with tighter OAuth scopes, enabled Calico NetworkPolicies, and introduced Gateway API foundations across dev, staging, and production.",
+          "Designed PR-driven ephemeral environments with build, deploy, restart, and destroy workflows, enabling isolated validation for backend services and dependencies.",
+          "Refactored Terraform modules and GitOps repositories to manage IAM, firewalls, SSL policies, NetworkPolicies, Datadog monitors, Kubernetes resources, and shared platform config.",
+          "Supported ISO27001/GDPR readiness — remediated Scrut and UpGuard findings; documented network topology, environment separation, DR, service account keys, and access controls.",
+          "Standardized observability with Datadog dashboards, SLOs, Terraform-managed monitors, severity-based alerting, pod restart alerts, load balancer monitoring, and rollout checks.",
+          "Led the migration from GCE Ingress to Gateway API, HTTPRoute, and Kong-based routing — adding KongPlugin support, health checks, CORS handling, metrics, and route-level transformations.",
+          "Improved release reliability with PR-gated validations, YAML checks, immutable image and release docs, release tagging, startup probes, PodDisruptionBudgets, and rollout monitoring.",
+          "Authored platform docs and enablement materials for SOPS/KMS GitOps secrets, IaC workflows, temporary grants, Cloud SQL Proxy, Datadog debugging, releases, and ephemeral environments."
+        ]
+      },
+      {
+        role: "DevOps Lead",
         company: "Demand.io",
         location: "Los Angeles, California",
-        period: "Sep 2024 — Present",
+        period: "Oct 2024 — Jan 2026",
         highlights: [
           "Built reusable deployment templates to allow rapid setup of new applications with ready-to-use dev, ephemeral, and prod environments, including automated monitoring, infrastructure provisioning, and DNS integration.",
           "Migrated multiple microservices (TypeScript, Python, and PHP applications) to continuous deployment workflows using ArgoCD on GKE clusters, enabling GitOps practices, streamlining deployment workflows, release management, rollbacks, and ephemeral environments.",
@@ -77,10 +95,10 @@ export const resumeData = {
         ]
       },
       {
-        role: "DevOps Engineer",
+        role: "DevOps Lead",
         company: "Andela",
         location: "New York, NY, USA",
-        period: "Jun 2022 — May 2023",
+        period: "Sep 2021 — May 2023",
         highlights: [
           "Hired as internal devops engineer after working a few months for Andela Client from Holonic Consulting.",
           "Worked on recreation of whole v1 ecosystem into v2 ecosystem using Terraform, GKE, ArgoCD, GitHub Actions and Jenkins, Datadog, Kong, Istio Service Mesh migrating Cloud Functions v1, Google App Engines, VM instances applications to GKE and using External DNS and External Secrets to leverage a secure GitOps with secrets management and DNS creation with Cloudflare..",
@@ -100,8 +118,8 @@ export const resumeData = {
       {
         role: "DevOps Engineer",
         company: "Holonic",
-        location: "Silicon Valley, CA, EUA",
-        period: "Oct 2021 — Jun 2022",
+        location: "Silicon Valley, CA, USA",
+        period: "Oct 2021 — Nov 2022",
         highlights: [
           "Work on Silicon Valley startup accelerator for Client Andela, creating POC for their new application version and leveraging GCP deployment with Kubernetes and Microservices with GitHub Actions.",
           "Work on planning solutions and technologies and designing the new proposal for a version of the new talent application using mostly GCP, Kubernetes, and Terraform for Infrastructure as Code.",
@@ -274,19 +292,25 @@ export const resumeData = {
         url: "https://tools.axeforge.io/",
         description: "A suite of development lifecycle tools built for engineers. Utilities and automation helpers covering the full DevOps workflow — from code to deploy.",
         tags: ["DevOps", "Tooling", "Automation"]
+      },
+      {
+        name: "AxeForging — GitHub",
+        url: "https://github.com/AxeForging/",
+        description: "The org behind AxeForge — open-source Go CLIs, reusable GitHub Actions, Helm charts, and platform tooling that power the Academy and Tools platforms.",
+        tags: ["Open Source", "Go", "Helm", "Actions"]
       }
     ]
   },
   pt: {
     name: "Lucas Machado",
-    title: "Engenheiro DevOps",
+    title: "Engenheiro de Plataforma · DevOps Lead",
     contact: {
-      location: "Sevilha, Espanha",
+      location: "Sevilha, Andaluzia, Espanha",
       phone: "+34 661 99 29 07",
       email: "lucas.dpmachado@gmail.com",
       linkedin: "lucaspmachado"
     },
-    profile: "Engenheiro DevOps/Plataforma (10+ anos) construindo sistemas de produção na AWS/GCP e Kubernetes. Implementou GitOps no EKS/GKE com Argo CD, padronizou templates Helm e ambientes efêmeros baseados em PR com dados mascarados/semeados, TTLs e controle de custos. Construiu CI/CD seguro (CircleCI, GitHub Actions, self-hosted runners) com cache, paralelismo, artefatos, portões de release (Playwright, k6, OPA/Kyverno) e rollbacks automatizados. IaC com Terraform/Pulumi para clusters, IAM e redes. Elevou a observabilidade (Datadog/Prometheus/Grafana, OpenTelemetry), definiu SLIs/SLOs e health checks, melhorou o on-call. Parceria multifuncional; experiência prática com Node.js/TS, Python, Istio/Kong; impulsiona entregas confiáveis e com controle de custos.",
+    profile: "Engenheiro de Plataforma e DevOps Lead com mais de 10 anos construindo infraestrutura em nuvem escalável, fluxos GitOps e ferramentas de plataforma para times de desenvolvimento. Arquiteto sistemas cloud-native e migro stacks legadas para plataformas resilientes — de milhares a milhões de usuários — em AWS, GCP e Kubernetes (GKE, EKS, AKS). Atuo em todo o espectro DevOps: IaC (Terraform, Pulumi, Crossplane), service mesh (Istio, Kong com plugins customizados em Go/Lua), CI/CD (GitHub Actions, Jenkins shared libs, CircleCI) e observabilidade (Datadog, Prometheus, Grafana, OpenTelemetry). Confortável tanto no hands-on quanto na liderança técnica.",
     skills: [
       "Git", "Docker", "Kubernetes", "Linux", "Google Cloud Platform", "Amazon AWS",
       "Cypress", "Golang", "NodeJS", "Ruby", "Bash Scripting", "Elasticsearch",
@@ -300,10 +324,28 @@ export const resumeData = {
     ],
     experience: [
       {
-        role: "Engenheiro DevOps",
+        role: "Engenheiro de Plataforma",
+        company: "Proxify",
+        location: "Suécia (Remoto)",
+        period: "Nov 2025 — Presente",
+        highlights: [
+          "Construiu workflows reutilizáveis no GitHub Actions e custom actions para Terraform, deploys, gerenciamento de segredos, versionamento semântico e automação de releases no GCP.",
+          "Implementou IAM com privilégio mínimo usando Workload Identity, contas de serviço com escopo, roles customizadas, permissões temporárias e acesso baseado em grupos — reduzindo credenciais compartilhadas e bindings diretos a usuários.",
+          "Migrou workloads do GKE para node pools seguros com OAuth scopes mais restritos, habilitou Calico NetworkPolicies e introduziu fundações da Gateway API em dev, staging e produção.",
+          "Desenhou ambientes efêmeros baseados em PR com workflows de build, deploy, restart e destroy, permitindo validação isolada de serviços de backend e dependências.",
+          "Refatorou módulos Terraform e repositórios GitOps para gerenciar IAM, firewalls, políticas SSL, NetworkPolicies, monitores Datadog, recursos Kubernetes e configuração compartilhada da plataforma.",
+          "Apoiou conformidade ISO27001/GDPR — remediou findings do Scrut e UpGuard; documentou topologia de rede, separação de ambientes, DR, chaves de service account e controles de acesso.",
+          "Padronizou observabilidade com dashboards Datadog, SLOs, monitores gerenciados via Terraform, alertas por severidade, alertas de pod restart, monitoramento de load balancer e checks de rollout.",
+          "Liderou a migração do GCE Ingress para Gateway API, HTTPRoute e roteamento via Kong — adicionando KongPlugin, health checks, CORS, métricas e transformações por rota.",
+          "Melhorou a confiabilidade dos releases com validações gated por PR, checks de YAML, imutabilidade de imagens, release tagging, startup probes, PodDisruptionBudgets e monitoramento de rollout.",
+          "Criou docs de plataforma e materiais de habilitação para SOPS/KMS GitOps secrets, IaC, permissões temporárias, Cloud SQL Proxy, debug Datadog, releases e ambientes efêmeros."
+        ]
+      },
+      {
+        role: "DevOps Lead",
         company: "Demand.io",
         location: "Los Angeles, Califórnia",
-        period: "Set 2024 — Presente",
+        period: "Out 2024 — Jan 2026",
         highlights: [
           "Construiu templates de implantação reutilizáveis para permitir a configuração rápida de novas aplicações com ambientes de dev, efêmeros e prod prontos para uso, incluindo monitoramento automatizado, provisionamento de infraestrutura e integração de DNS.",
           "Migrou múltiplos microsserviços (aplicações TypeScript, Python e PHP) para fluxos de implantação contínua usando ArgoCD em clusters GKE, habilitando práticas GitOps, simplificando fluxos de implantação, gerenciamento de releases, rollbacks e ambientes efêmeros.",
@@ -355,10 +397,10 @@ export const resumeData = {
         ]
       },
       {
-        role: "Engenheiro DevOps",
+        role: "DevOps Lead",
         company: "Andela",
         location: "Nova York, NY, EUA",
-        period: "Jun 2022 — Mai 2023",
+        period: "Set 2021 — Mai 2023",
         highlights: [
           "Contratado como engenheiro interno de devops após trabalhar alguns meses para o Cliente Andela pela Holonic Consulting.",
           "Trabalhou na recriação de todo o ecossistema v1 para o ecossistema v2 usando Terraform, GKE, ArgoCD, GitHub Actions e Jenkins, Datadog, Kong, Istio Service Mesh migrando aplicações Cloud Functions v1, Google App Engines, instâncias VM para GKE e usando External DNS e External Secrets para alavancar um GitOps seguro com gerenciamento de segredos e criação de DNS com Cloudflare.",
@@ -378,7 +420,7 @@ export const resumeData = {
         role: "Engenheiro DevOps",
         company: "Holonic",
         location: "Vale do Silício, CA, EUA",
-        period: "Out 2021 — Jun 2022",
+        period: "Out 2021 — Nov 2022",
         highlights: [
           "Trabalhou em aceleradora de startups do Vale do Silício para o Cliente Andela, criando POC para a nova versão da aplicação e alavancando a implantação GCP com Kubernetes e Microsserviços com GitHub Actions.",
           "Trabalhou no planejamento de soluções e tecnologias e no design da nova proposta para uma versão da nova aplicação de talentos usando principalmente GCP, Kubernetes e Terraform para Infraestrutura como Código.",
@@ -551,19 +593,25 @@ export const resumeData = {
         url: "https://tools.axeforge.io/",
         description: "Conjunto de ferramentas para o ciclo de vida de desenvolvimento, criado para engenheiros. Utilitários e automações cobrindo todo o fluxo DevOps — do código ao deploy.",
         tags: ["DevOps", "Ferramentas", "Automação"]
+      },
+      {
+        name: "AxeForging — GitHub",
+        url: "https://github.com/AxeForging/",
+        description: "A organização por trás do AxeForge — CLIs em Go open-source, GitHub Actions reutilizáveis, charts Helm e ferramentas de plataforma que sustentam a Academy e os Tools.",
+        tags: ["Open Source", "Go", "Helm", "Actions"]
       }
     ]
   },
   es: {
     name: "Lucas Machado",
-    title: "Ingeniero DevOps",
+    title: "Ingeniero de Plataforma · Líder DevOps",
     contact: {
-      location: "Sevilla, España",
+      location: "Sevilla, Andalucía, España",
       phone: "+34 661 99 29 07",
       email: "lucas.dpmachado@gmail.com",
       linkedin: "lucaspmachado"
     },
-    profile: "Ingeniero DevOps/Plataforma (10+ años) construyendo sistemas de producción en AWS/GCP y Kubernetes. Implementó GitOps en EKS/GKE con Argo CD, estandarizó templates Helm y entornos efímeros basados en PR con datos enmascarados, TTLs y control de costes. Construyó CI/CD seguro (CircleCI, GitHub Actions, self-hosted runners) con caché, paralelismo, artefactos, puertas de release (Playwright, k6, OPA/Kyverno) y rollbacks automáticos. IaC con Terraform/Pulumi para clusters, IAM y redes. Elevó la observabilidad (Datadog/Prometheus/Grafana, OpenTelemetry), definió SLIs/SLOs y health checks, mejoró el on-call. Colaboración multidisciplinar; experiencia práctica con Node.js/TS, Python, Istio/Kong; impulsa entregas fiables y eficientes en costes.",
+    profile: "Ingeniero de Plataforma y Líder DevOps con más de 10 años construyendo infraestructura en la nube escalable, flujos GitOps y herramientas de plataforma para equipos de desarrollo. Diseño sistemas cloud-native y migro stacks legados hacia plataformas resilientes — de miles a millones de usuarios — sobre AWS, GCP y Kubernetes (GKE, EKS, AKS). Trabajo todo el espectro DevOps: IaC (Terraform, Pulumi, Crossplane), service mesh (Istio, Kong con plugins propios en Go/Lua), CI/CD (GitHub Actions, Jenkins shared libs, CircleCI) y observabilidad (Datadog, Prometheus, Grafana, OpenTelemetry). Cómodo tanto en hands-on como en liderazgo técnico.",
     skills: [
       "Git", "Docker", "Kubernetes", "Linux", "Google Cloud Platform", "Amazon AWS",
       "Cypress", "Golang", "NodeJS", "Ruby", "Bash Scripting", "Elasticsearch",
@@ -577,10 +625,28 @@ export const resumeData = {
     ],
     experience: [
       {
-        role: "Ingeniero DevOps",
+        role: "Ingeniero de Plataforma",
+        company: "Proxify",
+        location: "Suecia (Remoto)",
+        period: "Nov 2025 — Presente",
+        highlights: [
+          "Construyó workflows reutilizables de GitHub Actions y custom actions para Terraform, despliegues, gestión de secretos, versionado semántico y automatización de releases en GCP.",
+          "Implementó IAM con privilegio mínimo usando Workload Identity, cuentas de servicio con scope, roles personalizados, permisos temporales y acceso por grupos — reduciendo credenciales compartidas y bindings directos a usuarios.",
+          "Migró workloads de GKE a node pools seguros con OAuth scopes más estrictos, habilitó Calico NetworkPolicies e introdujo bases de Gateway API en dev, staging y producción.",
+          "Diseñó entornos efímeros basados en PR con flujos de build, deploy, restart y destroy, permitiendo validación aislada de servicios backend y dependencias.",
+          "Refactorizó módulos Terraform y repositorios GitOps para gestionar IAM, firewalls, políticas SSL, NetworkPolicies, monitores Datadog, recursos Kubernetes y configuración compartida de plataforma.",
+          "Apoyó cumplimiento ISO27001/GDPR — remedió hallazgos de Scrut y UpGuard; documentó topología de red, separación de entornos, DR, claves de service account y controles de acceso.",
+          "Estandarizó observabilidad con dashboards Datadog, SLOs, monitores gestionados con Terraform, alertas por severidad, alertas de pod restart, monitoreo de balanceadores y checks de rollout.",
+          "Lideró la migración de GCE Ingress a Gateway API, HTTPRoute y enrutamiento Kong — añadiendo KongPlugin, health checks, CORS, métricas y transformaciones por ruta.",
+          "Mejoró la fiabilidad de releases con validaciones gated por PR, checks YAML, inmutabilidad de imágenes, release tagging, startup probes, PodDisruptionBudgets y monitoreo de rollout.",
+          "Creó documentación de plataforma y materiales para SOPS/KMS GitOps secrets, IaC, permisos temporales, Cloud SQL Proxy, debug Datadog, releases y entornos efímeros."
+        ]
+      },
+      {
+        role: "Líder DevOps",
         company: "Demand.io",
         location: "Los Ángeles, California",
-        period: "Sep 2024 — Presente",
+        period: "Oct 2024 — Ene 2026",
         highlights: [
           "Creó templates de despliegue reutilizables para configurar rápidamente nuevas aplicaciones con entornos de dev, efímeros y prod listos para usar, incluyendo monitoreo automatizado, aprovisionamiento de infraestructura e integración de DNS.",
           "Migró múltiples microservicios (TypeScript, Python y PHP) a flujos de despliegue continuo usando ArgoCD en clusters GKE, habilitando prácticas GitOps, simplificando despliegues, gestión de releases, rollbacks y entornos efímeros.",
@@ -632,10 +698,10 @@ export const resumeData = {
         ]
       },
       {
-        role: "Ingeniero DevOps",
+        role: "Líder DevOps",
         company: "Andela",
         location: "Nueva York, NY, EE.UU.",
-        period: "Jun 2022 — May 2023",
+        period: "Sep 2021 — May 2023",
         highlights: [
           "Contratado como ingeniero interno de DevOps tras trabajar meses para el cliente Andela desde Holonic Consulting.",
           "Trabajó en la recreación del ecosistema v1 a v2 usando Terraform, GKE, ArgoCD, GitHub Actions, Jenkins, Datadog, Kong e Istio Service Mesh, migrando Cloud Functions v1, App Engines y VM instances a GKE.",
@@ -651,7 +717,7 @@ export const resumeData = {
         role: "Ingeniero DevOps",
         company: "Holonic",
         location: "Silicon Valley, CA, EE.UU.",
-        period: "Oct 2021 — Jun 2022",
+        period: "Oct 2021 — Nov 2022",
         highlights: [
           "Trabajó en aceleradora de startups de Silicon Valley para el cliente Andela, creando POC para su nueva versión de aplicación con GCP, Kubernetes y Microservicios con GitHub Actions.",
           "Responsable de toda la configuración de proyectos GCP, entornos, grupos de usuarios, roles y permisos con roles IAM personalizados usando principios de mínimo privilegio.",
@@ -785,6 +851,12 @@ export const resumeData = {
         url: "https://tools.axeforge.io/",
         description: "Suite de herramientas para el ciclo de vida del desarrollo, construida para ingenieros. Utilidades y automatización cubriendo todo el flujo DevOps — del código al despliegue.",
         tags: ["DevOps", "Herramientas", "Automatización"]
+      },
+      {
+        name: "AxeForging — GitHub",
+        url: "https://github.com/AxeForging/",
+        description: "La organización detrás de AxeForge — CLIs en Go open-source, GitHub Actions reutilizables, charts Helm y herramientas de plataforma que sostienen Academy y Tools.",
+        tags: ["Open Source", "Go", "Helm", "Actions"]
       }
     ]
   }
