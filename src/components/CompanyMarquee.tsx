@@ -33,8 +33,8 @@ export default function CompanyMarquee() {
         {label}
       </div>
 
-      <div className="relative flex">
-        <div className="flex shrink-0 gap-12 md:gap-16 pr-12 md:pr-16 animate-marquee whitespace-nowrap will-change-transform">
+      <div className="relative flex group">
+        <div className="flex shrink-0 gap-12 md:gap-16 pr-12 md:pr-16 animate-marquee whitespace-nowrap will-change-transform group-hover:[animation-play-state:paused]">
           {track.map((c, i) => (
             <span
               key={i}

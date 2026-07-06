@@ -2,8 +2,9 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { useLanguage } from '@/context/LanguageContext';
 import { resumeData } from '@/data/resume';
-import { ArrowUpRight, Mail, MapPin, Github, Linkedin, Briefcase } from 'lucide-react';
+import { ArrowUpRight, Mail, MapPin, Github, Linkedin, Briefcase, FileDown } from 'lucide-react';
 import Terminal from '@/components/Terminal';
+import { CV_URL, CV_FILENAME, cvLabel } from '@/data/cv';
 
 export default function Hero() {
   const { language } = useLanguage();
@@ -36,7 +37,7 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-extrabold text-white tracking-tighter leading-[0.95] mb-6">
+            <h1 className="font-display text-5xl md:text-7xl lg:text-[5.5rem] font-bold text-white tracking-tighter leading-[0.95] mb-6">
               {data.name.split(' ')[0]}
               <br />
               {data.name.split(' ').slice(1).join(' ')}
@@ -79,19 +80,28 @@ export default function Hero() {
               </a>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href={CV_URL}
+                download={CV_FILENAME}
+                className="btn-sheen group inline-flex items-center gap-2 px-6 py-3 bg-k8s-blue text-white rounded-md font-semibold text-sm hover:bg-k8s-blue/90 active:scale-[0.98] transition-all shadow-[0_8px_30px_rgba(249,115,22,0.25)]"
+              >
+                <FileDown size={16} className="group-hover:translate-y-0.5 transition-transform" />
+                {cvLabel[language]}
+                <span className="text-[10px] font-mono font-normal text-white/70 border-l border-white/25 pl-2 ml-0.5">PDF</span>
+              </a>
               <a
                 href="#experience"
-                className="group inline-flex items-center gap-2 px-6 py-3 bg-k8s-blue text-white rounded-md font-semibold text-sm hover:bg-k8s-blue/90 transition-all shadow-[0_8px_30px_rgba(249,115,22,0.25)]"
+                className="group inline-flex items-center gap-2 px-6 py-3 border border-cloud-border text-white rounded-md font-semibold text-sm hover:border-k8s-blue/60 hover:bg-k8s-blue/5 active:scale-[0.98] transition-all"
               >
                 {ctaPrimary}
                 <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
               <a
                 href={`mailto:${data.contact.email}`}
-                className="inline-flex items-center gap-2 px-6 py-3 border border-cloud-border text-white rounded-md font-semibold text-sm hover:border-k8s-blue/60 hover:bg-k8s-blue/5 transition-all"
+                className="inline-flex items-center gap-2 px-4 py-3 text-sm font-semibold text-cloud-muted hover:text-white transition-colors"
               >
-                <Mail size={16} />
+                <Mail size={16} className="text-k8s-blue" />
                 {ctaSecondary}
               </a>
             </div>

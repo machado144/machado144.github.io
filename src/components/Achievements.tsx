@@ -75,7 +75,7 @@ export default function Achievements() {
           <div className="text-k8s-blue text-xs font-semibold tracking-[0.2em] uppercase mb-3">
             {eyebrow}
           </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight mb-4">
             {heading}
           </h2>
           <p className="text-cloud-muted text-base md:text-lg">{subheading}</p>
@@ -91,7 +91,7 @@ export default function Achievements() {
               transition={{ duration: 0.5, delay: i * 0.06 }}
               className="bg-cloud-darker p-6 md:p-8 group hover:bg-cloud-dark transition-colors"
             >
-              <div className="text-4xl md:text-6xl font-extrabold text-white tracking-tighter leading-none mb-3 group-hover:text-k8s-blue transition-colors">
+              <div className="font-display text-4xl md:text-6xl font-bold tabular-nums text-white tracking-tighter leading-none mb-3 group-hover:text-k8s-blue transition-colors">
                 {s.numeric ? (
                   <CountUp end={s.numeric.end} prefix={s.numeric.prefix} suffix={s.numeric.suffix} />
                 ) : (

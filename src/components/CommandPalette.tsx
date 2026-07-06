@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '@/context/LanguageContext';
-import { Search, X, ArrowUpRight, Briefcase, Sparkles, Code, Mail, Linkedin, Github } from 'lucide-react';
+import { Search, X, ArrowUpRight, Briefcase, Sparkles, Code, Mail, Linkedin, Github, FileDown } from 'lucide-react';
+import { CV_URL } from '@/data/cv';
 
 type Action = {
   label: string;
@@ -40,6 +41,7 @@ export default function CommandPalette() {
   };
 
   const actions: Action[] = useMemo(() => [
+    { label: 'Download CV', hint: 'PDF résumé — 2026', icon: <FileDown size={15} />, run: () => { window.open(CV_URL, '_blank'); setIsOpen(false); } },
     { label: 'Experience', hint: 'Career timeline', icon: <Briefcase size={15} />, run: () => goTo('experience') },
     { label: 'Impact', hint: 'Outcomes & numbers', icon: <Sparkles size={15} />, run: () => goTo('achievements') },
     { label: 'Building', hint: 'AxeForge & projects', icon: <Code size={15} />, run: () => goTo('projects') },

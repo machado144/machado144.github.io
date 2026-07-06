@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Cpu, Terminal, Activity, ShieldCheck, Database, Cloud } from 'lucide-react';
+import { handleSpotlightMove } from '@/components/spotlight';
 
 export default function Skills() {
   const { language, t } = useLanguage();
@@ -57,7 +58,7 @@ export default function Skills() {
           <div className="text-k8s-blue text-xs font-semibold tracking-[0.2em] uppercase mb-3">
             {eyebrow}
           </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
             {t('skills.title')}
           </h2>
         </motion.div>
@@ -70,7 +71,8 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: groupIdx * 0.05 }}
-              className="rounded-xl border border-cloud-border bg-cloud-dark p-6 hover:border-k8s-blue/40 transition-colors group"
+              onMouseMove={handleSpotlightMove}
+              className="spotlight-card rounded-xl border border-cloud-border bg-cloud-dark p-6 hover:border-k8s-blue/40 hover:-translate-y-0.5 transition-all duration-300 group"
             >
               <div className="flex items-center gap-3 mb-5">
                 <div className="p-2 rounded-md bg-cloud-darker border border-cloud-border text-k8s-blue group-hover:scale-105 transition-transform">

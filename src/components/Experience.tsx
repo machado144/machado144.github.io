@@ -30,7 +30,7 @@ export default function Experience() {
           <div className="text-k8s-blue text-xs font-semibold tracking-[0.2em] uppercase mb-3">
             {eyebrow}
           </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
+          <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
             {t('experience.title')}
           </h2>
         </motion.div>

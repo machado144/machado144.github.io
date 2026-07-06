@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { useLanguage } from '@/context/LanguageContext';
 import { resumeData } from '@/data/resume';
 import { ArrowUpRight, Github, Sparkles, Users, GraduationCap } from 'lucide-react';
+import { handleSpotlightMove } from '@/components/spotlight';
 
 export default function Projects() {
   const { language, t } = useLanguage();
@@ -36,7 +37,7 @@ export default function Projects() {
             {eyebrow}
           </div>
           <div className="flex items-center gap-4 flex-wrap">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
+            <h2 className="font-display text-3xl md:text-5xl font-bold text-white tracking-tight">
               {t('projects.title')}
             </h2>
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-cloud-border bg-cloud-darker">
@@ -55,7 +56,8 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="group block rounded-2xl border border-cloud-border bg-gradient-to-br from-cloud-darker via-cloud-dark to-cloud-darker p-2 mb-6 hover:border-k8s-blue/40 transition-colors"
+          onMouseMove={handleSpotlightMove}
+          className="spotlight-card group block rounded-2xl border border-cloud-border bg-gradient-to-br from-cloud-darker via-cloud-dark to-cloud-darker p-2 mb-6 hover:border-k8s-blue/40 transition-colors"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-2">
             {/* Browser-mock preview */}
@@ -155,7 +157,8 @@ export default function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
-                className="group flex flex-col rounded-xl border border-cloud-border bg-cloud-darker p-6 hover:border-k8s-blue/50 transition-all"
+                onMouseMove={handleSpotlightMove}
+                className="spotlight-card group flex flex-col rounded-xl border border-cloud-border bg-cloud-darker p-6 hover:border-k8s-blue/50 hover:-translate-y-0.5 transition-all duration-300"
               >
                 <div className="flex items-start justify-between mb-5">
                   <div className="p-2 rounded-md bg-cloud-dark border border-cloud-border text-k8s-blue">

@@ -15,7 +15,8 @@ import Projects from '@/components/Projects';
 import Skills from '@/components/Skills';
 import CommandPalette from '@/components/CommandPalette';
 import ParticleNetwork from '@/components/ParticleNetwork';
-import { Mail, Linkedin, Github } from 'lucide-react';
+import { Mail, Linkedin, Github, FileDown } from 'lucide-react';
+import { CV_URL, CV_FILENAME, cvLabel } from '@/data/cv';
 
 function Footer() {
   const { language } = useLanguage();
@@ -37,6 +38,14 @@ function Footer() {
         </div>
 
         <div className="flex items-center gap-2">
+          <a
+            href={CV_URL}
+            download={CV_FILENAME}
+            className="flex items-center gap-1.5 px-3 py-1.5 mr-1 text-xs font-semibold text-cloud-text border border-cloud-border rounded-md hover:border-k8s-blue/50 hover:text-white transition-all"
+          >
+            <FileDown size={13} className="text-k8s-blue" />
+            {cvLabel[language]}
+          </a>
           <a
             href={`mailto:${data.contact.email}`}
             aria-label="Email"
@@ -77,6 +86,7 @@ export default function App() {
     <LanguageProvider>
       <div className="min-h-screen bg-cloud-darker text-cloud-text font-sans selection:bg-k8s-blue selection:text-white">
         <ParticleNetwork fixed />
+        <div className="grain-overlay" aria-hidden="true" />
         <Navbar />
         <CommandPalette />
         <main>
